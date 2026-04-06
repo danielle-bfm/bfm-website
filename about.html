@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Better Future Media</title>
+  <style>
+    /* ─── FONTS ─────────────────────────────────────────────── */
+    @font-face {
+      font-family: 'CraftedCalm';
+      src: url('fonts/craftedcalmsans-webfont.woff2') format('woff2'),
+           url('fonts/craftedcalmsans-webfont.woff') format('woff');
+      font-weight: normal; font-style: normal;
+    }
+    @font-face {
+      font-family: 'CraftedCalm';
+      src: url('fonts/craftedcalmsans-italic-webfont.woff2') format('woff2'),
+           url('fonts/craftedcalmsans-italic-webfont.woff') format('woff');
+      font-weight: normal; font-style: italic;
+    }
+    @font-face {
+      font-family: 'SpaceMono';
+      src: url('fonts/SpaceMono-Regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal;
+    }
+    @font-face {
+      font-family: 'SpaceMono';
+      src: url('fonts/SpaceMono-Italic.ttf') format('truetype');
+      font-weight: 400; font-style: italic;
+    }
+    @font-face {
+      font-family: 'SpaceMono';
+      src: url('fonts/SpaceMono-Bold.ttf') format('truetype');
+      font-weight: 700; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Gracio';
+      src: url('fonts/gracio-webfont.woff2') format('woff2'),
+           url('fonts/gracio-webfont.woff') format('woff');
+      font-weight: normal; font-style: normal;
+    }
+
+    /* ─── VARIABLES ─────────────────────────────────────────── */
+    :root {
+      --cream:      #F0ECE2;
+      --near-black: #222214;
+      --brown:      #4F3419;
+      --olive-lt:   #B2B560;
+      --olive-dk:   #5B5F16;
+      --sky:        #B9D3D9;
+      --gold:       #F7B634;
+      --gold-dk:    #EC9E00;
+      --teal:       #1E3535;
+    }
+
+    /* ─── RESET ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--cream);
+      color: var(--near-black);
+      font-family: 'SpaceMono', monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      background: var(--cream);
+    }
+    .nav-wordmark {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+    .nav-submark {
+      height: 44px;
+      width: auto;
+      display: none;
+    }
+    .nav-about {
+      font-family: 'SpaceMono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--brown);
+      text-transform: uppercase;
+    }
+    .nav-about:hover { opacity: 0.7; }
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--brown);
+    }
+
+    /* ─── MOBILE MENU OVERLAY ───────────────────────────────── */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      padding: 20px 32px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      display: flex;
+    }
+    .mobile-menu-close span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--brown);
+    }
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mobile-menu-links a {
+      font-family: 'CraftedCalm', sans-serif;
+      font-size: clamp(48px, 14vw, 72px);
+      color: var(--brown);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .mobile-menu-links a:hover { opacity: 0.7; }
+
+    /* ─── TORN PAPER HEADER ──────────────────────────────────── */
+    .about-header {
+      padding-top: 64px;
+      position: relative;
+      background: var(--cream);
+      overflow: hidden;
+    }
+    .torn-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      /* Pull up slightly to remove any gap */
+      margin-bottom: -2px;
+    }
+
+    /* ─── ABOUT BODY ─────────────────────────────────────────── */
+    .about-body {
+      padding: 80px 40px 80px;
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Faint watermark star in background */
+    .about-body::before {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: 40px;
+      width: 340px;
+      height: 340px;
+      background-image: url('Logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    .about-body p {
+      font-family: 'SpaceMono', monospace;
+      font-size: clamp(13px, 1.3vw, 15px);
+      line-height: 1.85;
+      color: var(--near-black);
+      margin-bottom: 32px;
+      text-align: justify;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+
+    /* Inline emphasis — phrases rendered in a distinct style */
+    .about-body em {
+      font-family: 'SpaceMono', monospace;
+      font-style: normal;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--teal);
+      padding: 64px 40px 72px;
+      text-align: center;
+    }
+    .footer-text {
+      font-family: 'SpaceMono', monospace;
+      font-size: clamp(13px, 1.4vw, 16px);
+      line-height: 1.7;
+      color: var(--cream);
+      max-width: 560px;
+      margin: 0 auto 28px;
+    }
+    .footer-email {
+      display: inline-block;
+      font-family: 'CraftedCalm', sans-serif;
+      font-size: clamp(18px, 3vw, 28px);
+      color: var(--cream);
+      letter-spacing: 0.03em;
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+    .footer-email:hover { opacity: 0.75; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-wordmark { display: none; }
+      .nav-submark  { display: block; }
+      .nav-about    { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .about-body { padding: 40px 24px 60px; }
+      .about-body p { text-align: left; }
+      .about-body::before { display: none; }
+      footer { padding: 48px 24px 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html">
+      <img class="nav-wordmark" src="wordmark.png" alt="Better Future">
+      <img class="nav-submark"  src="Submark BF.png" alt="Better Future">
+    </a>
+    <a class="nav-about" href="about.html">About</a>
+    <button class="nav-hamburger" id="menu-open" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-top">
+      <img src="Submark BF.png" alt="Better Future" style="height:44px;">
+      <button class="mobile-menu-close" id="menu-close" aria-label="Close menu">
+        <span style="transform:rotate(45deg) translate(5px,5px);"></span>
+        <span style="transform:rotate(-45deg) translate(0,-1px);"></span>
+      </button>
+    </div>
+    <nav class="mobile-menu-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+
+  <!-- TORN PAPER HEADER -->
+  <div class="about-header">
+    <!-- SVG torn paper edge: teal at top, organic torn bottom edge revealing cream -->
+    <svg class="torn-svg" viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#1E3535" d="
+        M0,0 L1440,0 L1440,58
+        C1430,54 1422,62 1414,57
+        C1406,52 1400,60 1392,55
+        C1385,50 1378,58 1370,53
+        C1362,48 1355,56 1347,61
+        C1339,66 1332,54 1324,49
+        C1316,44 1308,58 1300,53
+        C1292,48 1285,62 1277,57
+        C1269,52 1261,60 1253,55
+        C1245,50 1237,56 1229,61
+        C1221,66 1213,54 1205,49
+        C1197,44 1190,56 1182,51
+        C1174,46 1166,60 1158,55
+        C1150,50 1143,62 1135,57
+        C1127,52 1119,64 1111,59
+        C1103,54 1095,58 1087,53
+        C1079,48 1072,62 1064,57
+        C1056,52 1048,60 1040,65
+        C1032,70 1024,54 1016,49
+        C1008,44 1000,58 992,53
+        C984,48 977,62 969,57
+        C961,52 953,66 945,61
+        C937,56 929,54 921,49
+        C913,44 906,60 898,55
+        C890,50 882,58 874,53
+        C866,48 858,62 850,57
+        C842,52 835,66 827,61
+        C819,56 811,54 803,49
+        C795,44 787,60 779,55
+        C771,50 764,58 756,53
+        C748,48 740,64 732,59
+        C724,54 716,62 708,57
+        C700,52 693,60 685,55
+        C677,50 669,56 661,61
+        C653,66 645,54 637,49
+        C629,44 621,58 613,53
+        C605,48 598,62 590,57
+        C582,52 574,66 566,61
+        C558,56 550,54 542,59
+        C534,64 526,58 518,53
+        C510,48 502,62 494,57
+        C486,52 479,60 471,55
+        C463,50 455,56 447,61
+        C439,66 431,54 423,49
+        C415,44 407,60 399,55
+        C391,50 384,62 376,57
+        C368,52 360,64 352,59
+        C344,54 336,58 328,53
+        C320,48 313,62 305,57
+        C297,52 289,60 281,65
+        C273,70 265,54 257,49
+        C249,44 241,58 233,53
+        C225,48 218,62 210,57
+        C202,52 194,66 186,61
+        C178,56 170,54 162,49
+        C154,44 146,60 138,55
+        C130,50 123,62 115,57
+        C107,52 99,64 91,59
+        C83,54 75,58 67,53
+        C59,48 52,60 44,55
+        C36,50 28,56 20,61
+        C12,66 6,54 0,49
+        L0,0 Z
+      "/>
+    </svg>
+  </div>
+
+  <!-- ABOUT BODY -->
+  <main class="about-body">
+    <p>Better Future Media builds narratives that <em>challenge&nbsp;extractive&nbsp;systems</em> and steer society toward a <em>more&nbsp;regenerative&nbsp;future</em>. We believe that the old world – which has been propped up by extractive economic, political, and social systems – is dying, and the new world won't arrive on its own. It must be built deliberately, by shifting power away from capital and toward people and communities. We create media to accelerate this shift.</p>
+
+    <p>We believe that a better future – one that is <em>more&nbsp;just,&nbsp;more&nbsp;abundant,&nbsp;and&nbsp;more&nbsp;sustainable</em> – is possible, but only if we confront power, change course, and build that world. And crucially: it's already happening. Our role is to find and amplify these stories through media formats and platforms that billions of people use to make sense of the world today.</p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-text">Whether you're a collaborator with a story worth telling, someone who wants to support our work, or just wants to connect — we'd love to hear from you.</p>
+    <a class="footer-email" href="mailto:hi@betterfuture.media">HI@BETTERFUTURE.MEDIA</a>
+  </footer>
+
+  <script>
+    const menu = document.getElementById('mobile-menu');
+    document.getElementById('menu-open').addEventListener('click', () => {
+      menu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('menu-close').addEventListener('click', () => {
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  </script>
+</body>
+</html>
