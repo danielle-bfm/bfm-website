@@ -208,13 +208,12 @@
 
     /* ─── TORN PAPER TRANSITION ─────────────────────────────── */
     /* Images are 1280×2699px — torn edge sits ~27vw from top at full width.
-       Cream starts at 4vw, so only a ~4vw strip of green is visible between
-       the two torn edges. margin-top: -35vw pulls the transition well up into
-       the hero so both tears appear near the bottom of the hero image. */
+       Cream starts at 1.5vw so only a sliver of green is visible.
+       margin-top: -30vw gives ~250px of hero space below the tagline. */
     .torn-transition {
       position: relative;
-      height: 40vw;
-      margin-top: -35vw; /* overlap the bottom of the hero */
+      height: 35vw;
+      margin-top: -30vw; /* overlap the bottom of the hero */
       z-index: 4;
       overflow: hidden;
       pointer-events: none;
@@ -231,15 +230,18 @@
       top: 0;
       z-index: 1;
     }
-    /* Cream: top sheet, just 4vw below green so only a narrow strip of green shows */
+    /* Cream: top sheet, 1.5vw offset — just a sliver of green visible */
     .torn-layer-cream {
-      top: 4vw;
+      top: 1.5vw;
       z-index: 2;
     }
 
     /* ─── CONTENT WRAPPER (paper background) ─────────────────── */
     .content-wrapper {
       background-color: var(--cream);
+      background-image: url('paper%20background%20cream.png');
+      background-size: cover;
+      background-position: bottom center;
       position: relative;
     }
 
