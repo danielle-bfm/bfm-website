@@ -46,6 +46,9 @@
       --near-black: #222214;
       --brown:      #4F3419;
       --sky:        #B9D3D9;
+      --olive-lt:   #B2B560;
+      --olive-dk:   #5B5F16;
+      --rust:       #D36534;
       --gold:       #F7B634;
       --gold-dk:    #EC9E00;
       --teal:       #1E3535;
@@ -196,22 +199,32 @@
     .hero-tagline {
       font-family: 'SpaceMono', monospace;
       font-style: italic;
-      font-size: clamp(13px, 1.5vw, 19px);
+      font-size: clamp(18px, 2vw, 29px);
       color: var(--cream);
       line-height: 1.65;
     }
 
     /* ─── TORN PAPER (hero → content) ──────────────────────── */
-    /* SVG sits at the very bottom of the hero, creates torn cream edge */
-    .hero-torn {
+    .torn-wrap {
       position: absolute;
       bottom: -2px;
       left: 0; right: 0;
       width: 100%;
-      height: auto;
       z-index: 3;
+      /* tall enough to hold both layers */
+      height: 110px;
+      pointer-events: none;
+    }
+    .torn-wrap svg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
       display: block;
     }
+    .torn-green { z-index: 1; bottom: 18px !important; }
+    .torn-cream { z-index: 2; }
 
     /* ─── CONTENT WRAPPER (paper background) ─────────────────── */
     .content-wrapper {
@@ -253,11 +266,9 @@
       transform: rotate(-1.2deg);
       margin-top: 52px;
     }
-    .pillar-cream { background: var(--cream); }
-    .pillar-brown {
-      background: var(--brown);
-    }
-    .pillar-sky   { background: var(--sky); }
+    .pillar-sky    { background: var(--sky); }
+    .pillar-rust   { background: var(--rust); }
+    .pillar-olive  { background: var(--olive-lt); }
 
     .pillar h2 {
       font-family: 'CraftedCalm', sans-serif;
@@ -267,7 +278,8 @@
       margin-bottom: 16px;
       color: var(--brown);
     }
-    .pillar-brown h2 { color: var(--cream); }
+    .pillar-rust h2  { color: var(--cream); }
+    .pillar-olive h2 { color: var(--near-black); }
 
     .pillar p {
       font-family: 'SpaceMono', monospace;
@@ -275,26 +287,28 @@
       line-height: 1.75;
       color: var(--brown);
     }
-    .pillar-brown p { color: var(--cream); opacity: 0.88; }
+    .pillar-rust p  { color: var(--cream); opacity: 0.92; }
+    .pillar-olive p { color: var(--near-black); }
 
     /* ─── WORK / ACCORDION ───────────────────────────────────── */
     .work {
-      background: var(--near-black);
+      background: var(--olive-dk);
       display: grid;
       grid-template-columns: 1fr 1.6fr;
     }
     .work-description {
       padding: 52px 40px;
-      border-right: 1px solid rgba(240,236,226,0.15);
+      border-right: 1px solid rgba(240,236,226,0.2);
     }
     .work-description p {
       font-family: 'CraftedCalm', sans-serif;
       font-size: clamp(14px, 1.3vw, 18px);
       line-height: 1.7;
       color: var(--cream);
+      font-style: normal;
     }
-    /* description is all CraftedCalm now; brand-name is just inherited */
-    .work-description .brand-name { font-style: italic; }
+    /* no special treatment — brand-name inherits everything */
+    .work-description .brand-name { font-style: normal; }
 
     .accordion { padding: 0; }
     .accordion-item {
@@ -381,7 +395,7 @@
 
     /* ─── FOOTER ─────────────────────────────────────────────── */
     footer {
-      background: var(--teal);
+      background: var(--cream);
       padding: 64px 40px 72px;
       text-align: center;
     }
@@ -389,7 +403,7 @@
       font-family: 'SpaceMono', monospace;
       font-size: clamp(13px, 1.4vw, 16px);
       line-height: 1.75;
-      color: var(--cream);
+      color: var(--brown);
       max-width: 560px;
       margin: 0 auto 28px;
     }
@@ -397,12 +411,11 @@
       display: inline-block;
       font-family: 'CraftedCalm', sans-serif;
       font-size: clamp(20px, 3vw, 32px);
-      color: var(--gold);
+      color: var(--rust);
       letter-spacing: 0.02em;
-      text-decoration: underline;
-      text-underline-offset: 6px;
+      text-decoration: none;
     }
-    .footer-email:hover { color: var(--gold-dk); }
+    .footer-email:hover { opacity: 0.75; }
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 768px) {
@@ -483,73 +496,69 @@
       <p class="hero-tagline">shifting the narrative,<br>changing the system.</p>
     </div>
 
-    <!-- Torn paper edge: cream tears upward out of the dark hero -->
-    <svg class="hero-torn" viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path fill="#F0ECE2" d="
-        M0,72 L0,42
-        C8,46 16,38 24,43
-        C32,48 40,36 48,41
-        C56,46 64,34 72,40
-        C80,46 88,38 96,33
-        C104,28 112,44 120,39
-        C128,34 136,48 144,43
-        C152,38 160,52 168,47
-        C176,42 184,36 192,41
-        C200,46 208,32 216,38
-        C224,44 232,34 240,29
-        C248,24 256,42 264,47
-        C272,52 280,38 288,43
-        C296,48 304,34 312,40
-        C320,46 328,36 336,31
-        C344,26 352,44 360,49
-        C368,54 376,40 384,35
-        C392,30 400,46 408,41
-        C416,36 424,50 432,45
-        C440,40 448,32 456,38
-        C464,44 472,36 480,42
-        C488,48 496,34 504,39
-        C512,44 520,30 528,36
-        C536,42 544,52 552,47
-        C560,42 568,36 576,42
-        C584,48 592,38 600,33
-        C608,28 616,44 624,50
-        C632,56 640,40 648,35
-        C656,30 664,46 672,41
-        C680,36 688,50 696,45
-        C704,40 712,34 720,40
-        C728,46 736,36 744,32
-        C752,28 760,44 768,50
-        C776,56 784,42 792,37
-        C800,32 808,48 816,43
-        C824,38 832,52 840,47
-        C848,42 856,36 864,42
-        C872,48 880,38 888,44
-        C896,50 904,36 912,31
-        C920,26 928,42 936,47
-        C944,52 952,38 960,44
-        C968,50 976,36 984,41
-        C992,46 1000,32 1008,38
-        C1016,44 1024,34 1032,40
-        C1040,46 1048,52 1056,46
-        C1064,40 1072,34 1080,40
-        C1088,46 1096,36 1104,31
-        C1112,26 1120,44 1128,49
-        C1136,54 1144,40 1152,35
-        C1160,30 1168,46 1176,41
-        C1184,36 1192,50 1200,45
-        C1208,40 1216,34 1224,40
-        C1232,46 1240,36 1248,42
-        C1256,48 1264,38 1272,44
-        C1280,50 1288,40 1296,35
-        C1304,30 1312,46 1320,41
-        C1328,36 1336,50 1344,44
-        C1352,38 1360,32 1368,38
-        C1376,44 1384,36 1392,42
-        C1400,48 1408,38 1416,34
-        C1424,30 1432,44 1440,40
-        L1440,72 Z
-      "/>
-    </svg>
+    <!-- Two-layer torn paper: green behind, cream on top -->
+    <div class="torn-wrap" aria-hidden="true">
+      <!-- Back layer: olive green (#B2B560), offset higher -->
+      <svg class="torn-green" viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#B2B560" d="
+          M0,72 L0,38
+          C12,44 20,32 32,38 C44,44 52,30 64,36
+          C76,42 84,28 96,34 C108,40 116,26 128,32
+          C140,38 148,50 160,44 C172,38 180,28 192,34
+          C204,40 212,26 224,32 C236,38 244,52 256,46
+          C268,40 276,30 288,36 C300,42 308,28 320,34
+          C332,40 340,54 352,48 C364,42 372,32 384,38
+          C396,44 404,28 416,34 C428,40 436,26 448,32
+          C460,38 468,50 480,44 C492,38 500,26 512,32
+          C524,38 532,52 544,46 C556,40 564,28 576,34
+          C588,40 596,26 608,32 C620,38 628,50 640,44
+          C652,38 660,28 672,34 C684,40 692,54 704,48
+          C716,42 724,30 736,36 C748,42 756,28 768,34
+          C780,40 788,26 800,32 C812,38 820,52 832,46
+          C844,40 852,28 864,34 C876,40 884,26 896,32
+          C908,38 916,50 928,44 C940,38 948,26 960,32
+          C972,38 980,54 992,48 C1004,42 1012,30 1024,36
+          C1036,42 1044,28 1056,34 C1068,40 1076,52 1088,46
+          C1100,40 1108,28 1120,34 C1132,40 1140,26 1152,32
+          C1164,38 1172,50 1184,44 C1196,38 1204,28 1216,34
+          C1228,40 1236,54 1248,48 C1260,42 1268,30 1280,36
+          C1292,42 1300,26 1312,32 C1324,38 1332,50 1344,44
+          C1356,38 1364,28 1376,34 C1388,40 1400,26 1412,32
+          C1424,38 1432,50 1440,44
+          L1440,72 Z
+        "/>
+      </svg>
+      <!-- Front layer: cream, sits lower — creates visible green strip behind -->
+      <svg class="torn-cream" viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#F0ECE2" d="
+          M0,72 L0,46
+          C8,50 18,40 28,46 C38,52 48,38 60,44
+          C72,50 80,36 92,42 C104,48 114,34 124,40
+          C134,46 144,36 156,42 C168,48 176,34 188,40
+          C200,46 210,56 220,50 C230,44 240,34 252,40
+          C264,46 272,32 284,38 C296,44 304,56 316,50
+          C328,44 338,32 350,38 C362,44 370,30 382,36
+          C394,42 404,54 414,48 C424,42 434,30 446,36
+          C458,42 466,56 478,50 C490,44 498,32 510,38
+          C522,44 532,30 542,36 C552,42 562,54 574,48
+          C586,42 594,32 606,38 C618,44 626,56 638,50
+          C650,44 660,34 670,40 C680,46 690,32 702,38
+          C714,44 722,58 734,52 C746,46 754,34 766,40
+          C778,46 788,32 798,38 C808,44 818,56 830,50
+          C842,44 850,32 862,38 C874,44 882,30 894,36
+          C906,42 916,54 926,48 C936,42 946,30 958,36
+          C970,42 978,56 990,50 C1002,44 1010,32 1022,38
+          C1034,44 1044,30 1054,36 C1064,42 1074,54 1086,48
+          C1098,42 1106,32 1118,38 C1130,44 1138,56 1150,50
+          C1162,44 1172,32 1182,38 C1192,44 1202,30 1214,36
+          C1226,42 1234,54 1246,48 C1258,42 1266,32 1278,38
+          C1290,44 1300,56 1312,50 C1324,44 1332,32 1344,38
+          C1356,44 1366,30 1376,36 C1386,42 1396,54 1408,48
+          C1420,42 1430,34 1440,40
+          L1440,72 Z
+        "/>
+      </svg>
+    </div>
   </section>
 
   <!-- CONTENT WRAPPER (paper texture background) -->
@@ -557,15 +566,15 @@
 
     <!-- THREE PILLARS — collage layout -->
     <section class="pillars">
-      <div class="pillar pillar-cream">
+      <div class="pillar pillar-sky">
         <h2>New Economic Systems</h2>
         <p>We cover the economic movements, policies, and ideas that support life within planetary limits. That means better economic democracy, public investment, post-growth thinkers and organizers proving that a new, more just economy is already taking shape.</p>
       </div>
-      <div class="pillar pillar-brown">
-        <h2>Political Power &amp; Movements</h2>
+      <div class="pillar pillar-rust">
+        <h2>Power &amp; Movements</h2>
         <p>We track the constituencies, campaigns, and organizing efforts working to change the systems beneath inequality and unmet needs. From electoral politics to grassroots movements, we're building a map that shows how power-building work that's too often ignored by traditional media.</p>
       </div>
-      <div class="pillar pillar-sky">
+      <div class="pillar pillar-olive">
         <h2>Planetary Wellbeing</h2>
         <p>Our narratives are grounded in the premise that ecological and human wellbeing are inseparable. We cover the work of ecological restoration, making attractive industries, and building a world where both humanity and nature can thrive.</p>
       </div>
@@ -574,7 +583,7 @@
     <!-- ACCORDION SECTION -->
     <section class="work">
       <div class="work-description">
-        <p><span class="brand-name">Better Future Media</span> works across written and video media formats, built to meet people where they already are and move them toward a deeper understanding of the systems shaping their lives.</p>
+        <p>Better Future Media works across written and video media formats, built to meet people where they already are and move them toward a deeper understanding of the systems shaping their lives.</p>
       </div>
       <div class="accordion" id="accordion">
 
