@@ -159,11 +159,11 @@
     }
     .mobile-menu-links a:hover { opacity: 0.7; }
 
-    /* ─── BLUE HERO ─────────────────────────────────────────── */
+    /* ─── CREAM HERO (blue comes from the torn paper PNG) ────── */
     .about-hero {
       min-height: 380px;
       height: 40vh;
-      background: #174a5a;
+      background: #EDE8D8;
       position: relative;
       z-index: 3;
     }
@@ -174,7 +174,7 @@
        container top, creating a ~1.5vw sliver of blue between the two tears. */
     .torn-transition-about {
       position: relative;
-      height: max(30vw, 32vw);
+      height: 24vw;
       margin-top: -20vw;
       z-index: 4;
       overflow: hidden;
@@ -203,25 +203,27 @@
 
     /* ─── ABOUT BODY ─────────────────────────────────────────── */
     .about-body {
-      padding: 80px 40px 80px 8%;
+      padding: 20px 40px 80px 8%;
       max-width: 620px;
       position: relative;
+      z-index: 1;
     }
 
     /* Star Submark watermark in cream section */
-    .about-body::before {
+    .about-content::before {
       content: '';
       position: absolute;
-      right: -40px;
-      top: 60px;
-      width: 360px;
-      height: 360px;
-      background-image: url('Star%20Submark%20%281%29.png');
+      right: 6%;
+      top: 80px;
+      width: 420px;
+      height: 420px;
+      background-image: url('Star%20Submark.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      opacity: 0.08;
+      opacity: 0.2;
       pointer-events: none;
+      z-index: 0;
     }
 
     .about-body p {
