@@ -159,42 +159,68 @@
     }
     .mobile-menu-links a:hover { opacity: 0.7; }
 
-    /* ─── TORN PAPER HEADER ──────────────────────────────────── */
-    .about-header {
-      padding-top: 64px;
+    /* ─── BLUE HERO ─────────────────────────────────────────── */
+    .about-hero {
+      min-height: 380px;
+      height: 40vh;
+      background: #174a5a;
       position: relative;
-      background: var(--cream);
-      overflow: hidden;
+      z-index: 3;
     }
-    .torn-svg {
-      display: block;
+
+    /* ─── TORN PAPER TRANSITION ─────────────────────────────── */
+    /* Blue paper: 1280×1561px — torn edge sits ~16vw from top at full width.
+       Cream starts at top: -10vw so its torn edge appears ~17.5vw from
+       container top, creating a ~1.5vw sliver of blue between the two tears. */
+    .torn-transition-about {
+      position: relative;
+      height: max(30vw, 32vw);
+      margin-top: -20vw;
+      z-index: 4;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .torn-layer {
+      position: absolute;
+      left: 0;
       width: 100%;
       height: auto;
-      /* Pull up slightly to remove any gap */
-      margin-bottom: -2px;
+      display: block;
+    }
+    .torn-layer-blue  { top: 0;     z-index: 1; }
+    .torn-layer-cream { top: -10vw; z-index: 2; }
+
+    /* ─── ABOUT CONTENT (cream paper background) ─────────────── */
+    .about-content {
+      background-color: #EDE8D8;
+      background-image: url('paper%20background%20cream.png');
+      background-size: 100% auto;
+      background-position: 50% -27.2vw;
+      background-repeat: no-repeat;
+      margin-top: -2px;
+      position: relative;
     }
 
     /* ─── ABOUT BODY ─────────────────────────────────────────── */
     .about-body {
-      padding: 80px 40px 80px;
-      max-width: 760px;
-      margin: 0 auto;
+      padding: 80px 40px 80px 8%;
+      max-width: 620px;
       position: relative;
     }
 
-    /* Faint watermark star in background */
+    /* Star Submark watermark in cream section */
     .about-body::before {
       content: '';
       position: absolute;
-      right: -60px;
-      top: 40px;
-      width: 340px;
-      height: 340px;
-      background-image: url('Logo.png');
+      right: -40px;
+      top: 60px;
+      width: 360px;
+      height: 360px;
+      background-image: url('Star%20Submark%20%281%29.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      opacity: 0.07;
+      opacity: 0.08;
       pointer-events: none;
     }
 
@@ -208,7 +234,7 @@
     }
     .about-body p:last-child { margin-bottom: 0; }
 
-    /* Inline emphasis — phrases rendered in a distinct style */
+    /* Inline emphasis */
     .about-body em {
       font-family: 'SpaceMono', monospace;
       font-style: normal;
@@ -217,7 +243,7 @@
 
     /* ─── FOOTER ─────────────────────────────────────────────── */
     footer {
-      background: var(--teal);
+      background: #174a5a;
       padding: 64px 40px 72px;
       text-align: center;
     }
@@ -231,12 +257,11 @@
     }
     .footer-email {
       display: inline-block;
-      font-family: 'CraftedCalm', sans-serif;
-      font-size: clamp(18px, 3vw, 28px);
-      color: var(--cream);
+      font-family: 'Gracio', serif;
+      font-size: clamp(20px, 3vw, 32px);
+      color: #B9D3D9;
       letter-spacing: 0.03em;
-      text-decoration: underline;
-      text-underline-offset: 5px;
+      text-decoration: none;
     }
     .footer-email:hover { opacity: 0.75; }
 
@@ -284,84 +309,23 @@
     </nav>
   </div>
 
-  <!-- TORN PAPER HEADER -->
-  <div class="about-header">
-    <!-- SVG torn paper edge: teal at top, organic torn bottom edge revealing cream -->
-    <svg class="torn-svg" viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#1E3535" d="
-        M0,0 L1440,0 L1440,58
-        C1430,54 1422,62 1414,57
-        C1406,52 1400,60 1392,55
-        C1385,50 1378,58 1370,53
-        C1362,48 1355,56 1347,61
-        C1339,66 1332,54 1324,49
-        C1316,44 1308,58 1300,53
-        C1292,48 1285,62 1277,57
-        C1269,52 1261,60 1253,55
-        C1245,50 1237,56 1229,61
-        C1221,66 1213,54 1205,49
-        C1197,44 1190,56 1182,51
-        C1174,46 1166,60 1158,55
-        C1150,50 1143,62 1135,57
-        C1127,52 1119,64 1111,59
-        C1103,54 1095,58 1087,53
-        C1079,48 1072,62 1064,57
-        C1056,52 1048,60 1040,65
-        C1032,70 1024,54 1016,49
-        C1008,44 1000,58 992,53
-        C984,48 977,62 969,57
-        C961,52 953,66 945,61
-        C937,56 929,54 921,49
-        C913,44 906,60 898,55
-        C890,50 882,58 874,53
-        C866,48 858,62 850,57
-        C842,52 835,66 827,61
-        C819,56 811,54 803,49
-        C795,44 787,60 779,55
-        C771,50 764,58 756,53
-        C748,48 740,64 732,59
-        C724,54 716,62 708,57
-        C700,52 693,60 685,55
-        C677,50 669,56 661,61
-        C653,66 645,54 637,49
-        C629,44 621,58 613,53
-        C605,48 598,62 590,57
-        C582,52 574,66 566,61
-        C558,56 550,54 542,59
-        C534,64 526,58 518,53
-        C510,48 502,62 494,57
-        C486,52 479,60 471,55
-        C463,50 455,56 447,61
-        C439,66 431,54 423,49
-        C415,44 407,60 399,55
-        C391,50 384,62 376,57
-        C368,52 360,64 352,59
-        C344,54 336,58 328,53
-        C320,48 313,62 305,57
-        C297,52 289,60 281,65
-        C273,70 265,54 257,49
-        C249,44 241,58 233,53
-        C225,48 218,62 210,57
-        C202,52 194,66 186,61
-        C178,56 170,54 162,49
-        C154,44 146,60 138,55
-        C130,50 123,62 115,57
-        C107,52 99,64 91,59
-        C83,54 75,58 67,53
-        C59,48 52,60 44,55
-        C36,50 28,56 20,61
-        C12,66 6,54 0,49
-        L0,0 Z
-      "/>
-    </svg>
+  <!-- BLUE HERO -->
+  <div class="about-hero"></div>
+
+  <!-- TORN PAPER TRANSITION -->
+  <div class="torn-transition-about" aria-hidden="true">
+    <img class="torn-layer torn-layer-blue"  src="paper background blue.png" alt="">
+    <img class="torn-layer torn-layer-cream" src="paper background cream.png" alt="">
   </div>
 
-  <!-- ABOUT BODY -->
-  <main class="about-body">
-    <p>Better Future Media builds narratives that <em>challenge&nbsp;extractive&nbsp;systems</em> and steer society toward a <em>more&nbsp;regenerative&nbsp;future</em>. We believe that the old world – which has been propped up by extractive economic, political, and social systems – is dying, and the new world won't arrive on its own. It must be built deliberately, by shifting power away from capital and toward people and communities. We create media to accelerate this shift.</p>
+  <!-- ABOUT CONTENT -->
+  <div class="about-content">
+    <main class="about-body">
+      <p>Better Future Media builds narratives that <em>challenge&nbsp;extractive&nbsp;systems</em> and steer society toward a <em>more&nbsp;regenerative&nbsp;future</em>. We believe that the old world – which has been propped up by extractive economic, political, and social systems – is dying, and the new world won't arrive on its own. It must be built deliberately, by shifting power away from capital and toward people and communities. We create media to accelerate this shift.</p>
 
-    <p>We believe that a better future – one that is <em>more&nbsp;just,&nbsp;more&nbsp;abundant,&nbsp;and&nbsp;more&nbsp;sustainable</em> – is possible, but only if we confront power, change course, and build that world. And crucially: it's already happening. Our role is to find and amplify these stories through media formats and platforms that billions of people use to make sense of the world today.</p>
-  </main>
+      <p>We believe that a better future – one that is <em>more&nbsp;just,&nbsp;more&nbsp;abundant,&nbsp;and&nbsp;more&nbsp;sustainable</em> – is possible, but only if we confront power, change course, and build that world. And crucially: it's already happening. Our role is to find and amplify these stories through media formats and platforms that billions of people use to make sense of the world today.</p>
+    </main>
+  </div>
 
   <!-- FOOTER -->
   <footer>
