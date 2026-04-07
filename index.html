@@ -33,6 +33,12 @@
       src: url('fonts/SpaceMono-Bold.ttf') format('truetype');
       font-weight: 700; font-style: normal;
     }
+    @font-face {
+      font-family: 'Gracio';
+      src: url('fonts/gracio-webfont.woff2') format('woff2'),
+           url('fonts/gracio-webfont.woff') format('woff');
+      font-weight: normal; font-style: normal;
+    }
 
     /* ─── VARIABLES ─────────────────────────────────────────── */
     :root {
@@ -178,12 +184,12 @@
       filter: brightness(1.1) saturate(0.4);
     }
     .hero-title {
-      font-family: 'CraftedCalm', sans-serif;
+      font-family: 'Gracio', serif;
       font-size: clamp(32px, 6.5vw, 88px);
       font-weight: normal;
       color: var(--cream);
       text-transform: uppercase;
-      letter-spacing: 0;
+      letter-spacing: 0.02em;
       line-height: 1.0;
       margin-bottom: 16px;
     }
@@ -282,18 +288,13 @@
       border-right: 1px solid rgba(240,236,226,0.15);
     }
     .work-description p {
-      font-family: 'SpaceMono', monospace;
-      font-size: 13px;
-      line-height: 1.85;
-      color: var(--cream);
-      opacity: 0.88;
-    }
-    /* "Better Future Media" phrase in the description gets brand treatment */
-    .work-description .brand-name {
       font-family: 'CraftedCalm', sans-serif;
-      font-size: 1.15em;
-      color: var(--gold);
+      font-size: clamp(14px, 1.3vw, 18px);
+      line-height: 1.7;
+      color: var(--cream);
     }
+    /* description is all CraftedCalm now; brand-name is just inherited */
+    .work-description .brand-name { font-style: italic; }
 
     .accordion { padding: 0; }
     .accordion-item {
@@ -317,7 +318,7 @@
     }
     .accordion-btn:hover { background: rgba(240,236,226,0.04); }
 
-    /* ALL accordion title words use the same CraftedCalm — no mixed fonts */
+    /* ALL accordion title words — consistent CraftedCalm throughout */
     .accordion-title {
       font-family: 'CraftedCalm', sans-serif;
       font-size: clamp(16px, 1.8vw, 26px);
@@ -328,15 +329,13 @@
       gap: 12px;
       line-height: 1.2;
     }
-    .accordion-title .star {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
+    .accordion-star {
+      width: 22px;
+      height: 22px;
       flex-shrink: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23F0ECE2' d='M12 0 L13.2 10.8 L24 12 L13.2 13.2 L12 24 L10.8 13.2 L0 12 L10.8 10.8 Z'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
+      object-fit: contain;
+      /* The star PNG is cream-coloured; boost it to match --cream on dark bg */
+      filter: brightness(1.05) saturate(0.3);
     }
     .accordion-plus {
       font-family: 'SpaceMono', monospace;
@@ -583,7 +582,7 @@
         <div class="accordion-item">
           <button class="accordion-btn" aria-expanded="false">
             <span class="accordion-title">
-              <span class="star"></span>
+              <img src="Star Submark (1).png" class="accordion-star" alt="">
               Better Future Podcast
             </span>
             <span class="accordion-plus">+</span>
@@ -609,7 +608,7 @@
         <div class="accordion-item">
           <button class="accordion-btn" aria-expanded="false">
             <span class="accordion-title">
-              <span class="star"></span>
+              <img src="Star Submark (1).png" class="accordion-star" alt="">
               Better Future Media on Substack
             </span>
             <span class="accordion-plus">+</span>
@@ -627,7 +626,7 @@
         <div class="accordion-item">
           <button class="accordion-btn" aria-expanded="false">
             <span class="accordion-title">
-              <span class="star"></span>
+              <img src="Star Submark (1).png" class="accordion-star" alt="">
               Better Future Media on Socials
             </span>
             <span class="accordion-plus">+</span>
@@ -652,7 +651,7 @@
         <div class="accordion-item">
           <button class="accordion-btn" aria-expanded="false">
             <span class="accordion-title">
-              <span class="star"></span>
+              <img src="Star Submark (1).png" class="accordion-star" alt="">
               Michael Mezz (Our founder)
             </span>
             <span class="accordion-plus">+</span>
@@ -726,7 +725,7 @@
         nav.style.background     = 'transparent';
         nav.style.backdropFilter = 'none';
         nav.style.boxShadow      = 'none';
-        wmark.style.filter       = 'brightness(0) invert(1) sepia(1) saturate(0) brightness(2)';
+        wmark.style.filter       = 'brightness(0) invert(1) sepia(0.25) saturate(0.5) brightness(0.95)';
         alink.style.color        = 'var(--cream)';
       }
     }
