@@ -149,10 +149,12 @@
       position: relative;
       height: 100svh;
       min-height: 560px;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      /* let torn-transition overlap from below */
+      z-index: 3;
     }
     .hero-bg {
       position: absolute;
@@ -204,27 +206,36 @@
       line-height: 1.65;
     }
 
-    /* ─── TORN PAPER (hero → content) ──────────────────────── */
-    .torn-wrap {
-      position: absolute;
-      bottom: -2px;
-      left: 0; right: 0;
-      width: 100%;
-      z-index: 3;
-      /* tall enough to hold both layers */
-      height: 110px;
+    /* ─── TORN PAPER TRANSITION ─────────────────────────────── */
+    /* Images are 1280×2699px — at full viewport width they render ~2.1× taller
+       than wide. Torn edge sits ~13% from top → appears at ~27vw from top.
+       Container height 54vw ensures both torn edges are fully visible at all
+       screen sizes. Images render at natural proportions (no object-fit crop). */
+    .torn-transition {
+      position: relative;
+      height: 54vw;
+      margin-top: -20vw; /* overlap the bottom of the hero */
+      z-index: 4;
+      overflow: hidden;
       pointer-events: none;
     }
-    .torn-wrap svg {
+    .torn-layer {
       position: absolute;
-      bottom: 0;
       left: 0;
       width: 100%;
-      height: auto;
+      height: auto; /* natural proportional height — no cropping */
       display: block;
     }
-    .torn-green { z-index: 1; bottom: 18px !important; }
-    .torn-cream { z-index: 2; }
+    /* Green: bottom sheet, torn edge at ~27vw from container top */
+    .torn-layer-green {
+      top: 0;
+      z-index: 1;
+    }
+    /* Cream: top sheet, overlaid so its torn edge shows below the green */
+    .torn-layer-cream {
+      top: 20vw;
+      z-index: 2;
+    }
 
     /* ─── CONTENT WRAPPER (paper background) ─────────────────── */
     .content-wrapper {
@@ -496,70 +507,13 @@
       <p class="hero-tagline">shifting the narrative,<br>changing the system.</p>
     </div>
 
-    <!-- Two-layer torn paper: green behind, cream on top -->
-    <div class="torn-wrap" aria-hidden="true">
-      <!-- Back layer: olive green (#B2B560), offset higher -->
-      <svg class="torn-green" viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#B2B560" d="
-          M0,72 L0,38
-          C12,44 20,32 32,38 C44,44 52,30 64,36
-          C76,42 84,28 96,34 C108,40 116,26 128,32
-          C140,38 148,50 160,44 C172,38 180,28 192,34
-          C204,40 212,26 224,32 C236,38 244,52 256,46
-          C268,40 276,30 288,36 C300,42 308,28 320,34
-          C332,40 340,54 352,48 C364,42 372,32 384,38
-          C396,44 404,28 416,34 C428,40 436,26 448,32
-          C460,38 468,50 480,44 C492,38 500,26 512,32
-          C524,38 532,52 544,46 C556,40 564,28 576,34
-          C588,40 596,26 608,32 C620,38 628,50 640,44
-          C652,38 660,28 672,34 C684,40 692,54 704,48
-          C716,42 724,30 736,36 C748,42 756,28 768,34
-          C780,40 788,26 800,32 C812,38 820,52 832,46
-          C844,40 852,28 864,34 C876,40 884,26 896,32
-          C908,38 916,50 928,44 C940,38 948,26 960,32
-          C972,38 980,54 992,48 C1004,42 1012,30 1024,36
-          C1036,42 1044,28 1056,34 C1068,40 1076,52 1088,46
-          C1100,40 1108,28 1120,34 C1132,40 1140,26 1152,32
-          C1164,38 1172,50 1184,44 C1196,38 1204,28 1216,34
-          C1228,40 1236,54 1248,48 C1260,42 1268,30 1280,36
-          C1292,42 1300,26 1312,32 C1324,38 1332,50 1344,44
-          C1356,38 1364,28 1376,34 C1388,40 1400,26 1412,32
-          C1424,38 1432,50 1440,44
-          L1440,72 Z
-        "/>
-      </svg>
-      <!-- Front layer: cream, sits lower — creates visible green strip behind -->
-      <svg class="torn-cream" viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#F0ECE2" d="
-          M0,72 L0,46
-          C8,50 18,40 28,46 C38,52 48,38 60,44
-          C72,50 80,36 92,42 C104,48 114,34 124,40
-          C134,46 144,36 156,42 C168,48 176,34 188,40
-          C200,46 210,56 220,50 C230,44 240,34 252,40
-          C264,46 272,32 284,38 C296,44 304,56 316,50
-          C328,44 338,32 350,38 C362,44 370,30 382,36
-          C394,42 404,54 414,48 C424,42 434,30 446,36
-          C458,42 466,56 478,50 C490,44 498,32 510,38
-          C522,44 532,30 542,36 C552,42 562,54 574,48
-          C586,42 594,32 606,38 C618,44 626,56 638,50
-          C650,44 660,34 670,40 C680,46 690,32 702,38
-          C714,44 722,58 734,52 C746,46 754,34 766,40
-          C778,46 788,32 798,38 C808,44 818,56 830,50
-          C842,44 850,32 862,38 C874,44 882,30 894,36
-          C906,42 916,54 926,48 C936,42 946,30 958,36
-          C970,42 978,56 990,50 C1002,44 1010,32 1022,38
-          C1034,44 1044,30 1054,36 C1064,42 1074,54 1086,48
-          C1098,42 1106,32 1118,38 C1130,44 1138,56 1150,50
-          C1162,44 1172,32 1182,38 C1192,44 1202,30 1214,36
-          C1226,42 1234,54 1246,48 C1258,42 1266,32 1278,38
-          C1290,44 1300,56 1312,50 C1324,44 1332,32 1344,38
-          C1356,44 1366,30 1376,36 C1386,42 1396,54 1408,48
-          C1420,42 1430,34 1440,40
-          L1440,72 Z
-        "/>
-      </svg>
-    </div>
   </section>
+
+  <!-- TORN PAPER TRANSITION: real PNG files, green behind cream -->
+  <div class="torn-transition" aria-hidden="true">
+    <img class="torn-layer torn-layer-green" src="paper background green.png" alt="">
+    <img class="torn-layer torn-layer-cream" src="paper background cream.png" alt="">
+  </div>
 
   <!-- CONTENT WRAPPER (paper texture background) -->
   <div class="content-wrapper">
