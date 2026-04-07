@@ -190,7 +190,7 @@
     }
     .hero-title {
       font-family: 'Gracio', serif;
-      font-size: clamp(32px, 6.5vw, 88px);
+      font-size: clamp(17px, 5.5vw, 73px);
       font-weight: normal;
       color: var(--cream);
       text-transform: uppercase;
@@ -207,14 +207,14 @@
     }
 
     /* ─── TORN PAPER TRANSITION ─────────────────────────────── */
-    /* Images are 1280×2699px — at full viewport width they render ~2.1× taller
-       than wide. Torn edge sits ~13% from top → appears at ~27vw from top.
-       Container height 54vw ensures both torn edges are fully visible at all
-       screen sizes. Images render at natural proportions (no object-fit crop). */
+    /* Images are 1280×2699px — torn edge sits ~27vw from top at full width.
+       Cream starts at 4vw, so only a ~4vw strip of green is visible between
+       the two torn edges. margin-top: -35vw pulls the transition well up into
+       the hero so both tears appear near the bottom of the hero image. */
     .torn-transition {
       position: relative;
-      height: 54vw;
-      margin-top: -20vw; /* overlap the bottom of the hero */
+      height: 40vw;
+      margin-top: -35vw; /* overlap the bottom of the hero */
       z-index: 4;
       overflow: hidden;
       pointer-events: none;
@@ -231,18 +231,15 @@
       top: 0;
       z-index: 1;
     }
-    /* Cream: top sheet, overlaid so its torn edge shows below the green */
+    /* Cream: top sheet, just 4vw below green so only a narrow strip of green shows */
     .torn-layer-cream {
-      top: 20vw;
+      top: 4vw;
       z-index: 2;
     }
 
     /* ─── CONTENT WRAPPER (paper background) ─────────────────── */
     .content-wrapper {
       background-color: var(--cream);
-      background-image: url('paper background cream.png');
-      background-size: cover;
-      background-position: top center;
       position: relative;
     }
 
@@ -303,7 +300,7 @@
 
     /* ─── WORK / ACCORDION ───────────────────────────────────── */
     .work {
-      background: var(--olive-dk);
+      background: #222214;
       display: grid;
       grid-template-columns: 1fr 1.6fr;
     }
@@ -420,7 +417,7 @@
     }
     .footer-email {
       display: inline-block;
-      font-family: 'CraftedCalm', sans-serif;
+      font-family: 'Gracio', serif;
       font-size: clamp(20px, 3vw, 32px);
       color: var(--rust);
       letter-spacing: 0.02em;
