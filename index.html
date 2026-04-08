@@ -213,7 +213,7 @@
     .torn-transition {
       position: relative;
       height: max(30vw, calc(47vw - 250px));
-      margin-top: calc(-27vw + 10px); /* overlap the bottom of the hero, shifted down 10px */
+      margin-top: calc(-27vw + 15px); /* overlap the bottom of the hero, shifted down 15px */
       z-index: 4;
       overflow: hidden;
       pointer-events: none;
@@ -449,6 +449,7 @@
       .nav-submark  { display: block; }
       .nav-about    { display: none; }
       .nav-hamburger { display: flex; }
+      .torn-transition { margin-top: calc(-27vw + 10px); } /* 5px higher than desktop on mobile */
 
       .pillars {
         flex-direction: column;
