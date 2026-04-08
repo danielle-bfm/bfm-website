@@ -2,7 +2,7 @@ backend:
   name: github
   repo: danielle-bfm/bfm-website
   branch: main
-  base_url: https://betterfuture.media
+  base_url: https://www.betterfuture.media
   auth_endpoint: api/auth
 
 site_url: https://betterfuture.media
