@@ -55,6 +55,8 @@ module.exports = async function handler(req, res) {
                 setTimeout(function () { window.close(); }, 1000);
               }
             }, false);
+            addLog('announcing to opener...');
+            window.opener.postMessage('authorizing:github', '*');
           } else {
             document.body.innerHTML = '<p style="font-family:sans-serif;padding:2rem">Authentication complete — you can close this window and return to the CMS.</p>';
           }
