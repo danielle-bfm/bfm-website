@@ -1,4 +1,6 @@
 // Exchanges GitHub OAuth code for an access token, then posts it back to the CMS
+const CLIENT_ID = process.env.GITHUB_CLIENT_ID || 'Ov23lic2inAPIwkvHH2T';
+
 module.exports = async function handler(req, res) {
   const { code } = req.query;
 
@@ -7,7 +9,7 @@ module.exports = async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        client_id: process.env.GITHUB_CLIENT_ID,
+        client_id: CLIENT_ID,
         client_secret: process.env.GITHUB_CLIENT_SECRET,
         code,
       }),
