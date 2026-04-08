@@ -214,12 +214,12 @@
       z-index: 1;
     }
 
-    /* Star Submark watermark — sits above torn transition */
+    /* Star Submark watermark — background only, behind body text */
     .about-content::before {
       content: '';
       position: absolute;
       right: 6%;
-      top: -60px;
+      top: 0;
       width: 483px;
       height: 483px;
       background-image: url('Star%20Submark.png');
@@ -228,7 +228,7 @@
       background-position: center;
       opacity: 0.39;
       pointer-events: none;
-      z-index: 5;
+      z-index: 0;
     }
 
     .about-body p {

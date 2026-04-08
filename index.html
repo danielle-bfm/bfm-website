@@ -203,9 +203,9 @@
     .hero-tagline {
       font-family: 'SpaceMono', monospace;
       font-style: italic;
-      font-size: clamp(23px, 2.6vw, 38px);
+      font-size: clamp(23px, 2.6vw, 36px);
       color: var(--cream);
-      line-height: 1.65;
+      line-height: 1.2;
     }
 
     /* ─── TORN PAPER TRANSITION ─────────────────────────────── */
@@ -215,7 +215,7 @@
     .torn-transition {
       position: relative;
       height: max(30vw, calc(47vw - 250px));
-      margin-top: calc(-27vw + 15px); /* overlap the bottom of the hero, shifted down 15px */
+      margin-top: max(-460px, calc(-27vw + 15px)); /* cap prevents nav overlap on ultra-wide screens */
       z-index: 4;
       overflow: hidden;
       pointer-events: none;
@@ -516,9 +516,9 @@
       .footer-email { font-size: 18px; }
     }
 
-    /* Wide desktop: torn paper needs extra downward shift at large widths */
+    /* Wide desktop: cap prevents nav overlap on ultra-wide screens */
     @media (min-width: 1400px) {
-      .torn-transition { margin-top: calc(-27vw + 25px); }
+      .torn-transition { margin-top: max(-460px, calc(-27vw + 25px)); }
     }
   </style>
 </head>
