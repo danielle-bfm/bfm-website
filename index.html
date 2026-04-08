@@ -5,8 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Better Future Media</title>
   <link rel="icon" href="Star Submark (1).png" type="image/png">
-  <meta property="og:image" content="/Thumbnail.png">
-  <meta name="twitter:image" content="/Thumbnail.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://betterfuture.media/">
+  <meta property="og:title" content="Better Future Media">
+  <meta property="og:description" content="Shifting the narrative, changing the system. Better Future Media covers economic movements, political power, and planetary wellbeing.">
+  <meta property="og:image" content="https://betterfuture.media/Thumbnail.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Better Future Media">
+  <meta name="twitter:description" content="Shifting the narrative, changing the system.">
+  <meta name="twitter:image" content="https://betterfuture.media/Thumbnail.png">
   <style>
     /* ─── FONTS ─────────────────────────────────────────────── */
     @font-face {
@@ -215,7 +224,7 @@
     .torn-transition {
       position: relative;
       height: max(30vw, calc(47vw - 250px));
-      margin-top: max(-460px, calc(-27vw + 15px)); /* cap prevents nav overlap on ultra-wide screens */
+      margin-top: clamp(-420px, calc(-27vw + 15px), -180px); /* clamp: floor prevents nav overlap, ceiling keeps paper close to hero bottom */
       z-index: 4;
       overflow: hidden;
       pointer-events: none;
@@ -488,7 +497,7 @@
       .nav-submark  { display: block; }
       .nav-about    { display: none; }
       .nav-hamburger { display: flex; }
-      .torn-transition { margin-top: calc(-27vw + 5px); } /* 10px higher than desktop on mobile */
+      .torn-transition { margin-top: clamp(-300px, calc(-27vw + 5px), -80px); }
       .hero-bird { width: 229px; } /* 30% larger than updated desktop on mobile */
 
       .pillars-heading { font-size: 24px; padding: 48px 24px 0; }
@@ -516,9 +525,9 @@
       .footer-email { font-size: 18px; }
     }
 
-    /* Wide desktop: cap prevents nav overlap on ultra-wide screens */
+    /* Wide desktop: shift torn paper down to maintain gap below subtitle */
     @media (min-width: 1400px) {
-      .torn-transition { margin-top: max(-460px, calc(-27vw + 25px)); }
+      .torn-transition { margin-top: clamp(-380px, calc(-27vw + 120px), -180px); }
     }
   </style>
 </head>

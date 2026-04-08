@@ -76,10 +76,10 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Body, name: body, widget: text }
-              - { label: "Instagram URL", name: instagram_url, widget: string }
-              - { label: "TikTok URL", name: tiktok_url, widget: string }
-              - { label: "Threads URL", name: threads_url, widget: string }
-              - { label: "Bluesky URL", name: bluesky_url, widget: string }
+              - { label: "Instagram URL", name: instagram_url, widget: string, required: false }
+              - { label: "TikTok URL", name: tiktok_url, widget: string, required: false }
+              - { label: "Threads URL", name: threads_url, widget: string, required: false }
+              - { label: "Bluesky URL", name: bluesky_url, widget: string, required: false }
 
           - label: "Michael Mezz — Founder"
             name: founder
