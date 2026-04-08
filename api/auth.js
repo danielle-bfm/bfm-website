@@ -37,17 +37,12 @@ module.exports = async function handler(req, res) {
           var token = ${JSON.stringify(token)};
           var msg = 'authorization:github:success:' + JSON.stringify({ token: token, provider: 'github' });
 
-          function finish() {
-            window.opener.postMessage(msg, '*');
-            setTimeout(function () { window.close(); }, 500);
-          }
-
           if (window.opener) {
-            // Try sending directly (Decap CMS v3)
-            finish();
-            // Also respond to handshake in case CMS replies (older protocol)
             window.addEventListener('message', function (e) {
-              if (e.data === 'authorizing:github') finish();
+              if (e.data === 'authorizing:github') {
+                window.opener.postMessage(msg, e.origin);
+                setTimeout(function () { window.close(); }, 1000);
+              }
             }, false);
             window.opener.postMessage('authorizing:github', '*');
           } else {
