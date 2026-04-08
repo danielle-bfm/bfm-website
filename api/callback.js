@@ -1,8 +1,15 @@
 // Exchanges GitHub OAuth code for an access token, then posts it back to the CMS
-const CLIENT_ID = process.env.GITHUB_CLIENT_ID || 'Ov23lic2inAPIwkvHH2T';
+const CLIENT_ID    = process.env.GITHUB_CLIENT_ID    || 'Ov23lic2inAPIwkvHH2T';
+const SITE_URL     = process.env.SITE_URL            || 'https://betterfuture.media';
+const REDIRECT_URI = SITE_URL + '/api/callback';
 
 module.exports = async function handler(req, res) {
   const { code } = req.query;
+
+  if (!code) {
+    res.status(400).send('Missing code parameter');
+    return;
+  }
 
   try {
     const response = await fetch('https://github.com/login/oauth/access_token', {
@@ -12,6 +19,7 @@ module.exports = async function handler(req, res) {
         client_id: CLIENT_ID,
         client_secret: process.env.GITHUB_CLIENT_SECRET,
         code,
+        redirect_uri: REDIRECT_URI,
       }),
     });
 
