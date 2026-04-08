@@ -5,7 +5,6 @@ const SITE_URL  = process.env.SITE_URL  || 'https://betterfuture.media';
 module.exports = function handler(req, res) {
   const params = new URLSearchParams({
     client_id: CLIENT_ID,
-    redirect_uri: SITE_URL + '/api/callback',
     scope: 'repo',
     state: req.query.state || '',
   });

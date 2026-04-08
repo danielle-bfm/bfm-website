@@ -12,6 +12,11 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    if (!process.env.GITHUB_CLIENT_SECRET) {
+      res.status(500).send('GITHUB_CLIENT_SECRET environment variable is not set');
+      return;
+    }
+
     const response = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -19,7 +24,6 @@ module.exports = async function handler(req, res) {
         client_id: CLIENT_ID,
         client_secret: process.env.GITHUB_CLIENT_SECRET,
         code,
-        redirect_uri: REDIRECT_URI,
       }),
     });
 
