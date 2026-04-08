@@ -36,13 +36,9 @@ module.exports = async function handler(req, res) {
         <script>
         (function () {
           var payload = ${JSON.stringify(payload)};
-          function onMessage(e) {
-            window.opener.postMessage('authorization:github:success:' + payload, e.origin);
-            window.close();
-          }
           if (window.opener) {
-            window.addEventListener('message', onMessage, false);
-            window.opener.postMessage('authorizing:github', '*');
+            window.opener.postMessage('authorization:github:success:' + payload, '*');
+            setTimeout(function() { window.close(); }, 500);
           } else {
             document.body.innerHTML = '<p style="font-family:sans-serif;padding:2rem">Authentication complete — you can close this window and return to the CMS.</p>';
           }
