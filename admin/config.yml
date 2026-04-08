@@ -1,0 +1,99 @@
+backend:
+  name: github
+  repo: danielle-bfm/bfm-website
+  branch: main
+  auth_type: implicit
+  app_id: YOUR_GITHUB_OAUTH_APP_CLIENT_ID
+
+site_url: https://betterfuture.media
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+
+      - name: home
+        label: Home Page
+        file: content/home.json
+        format: json
+        fields:
+          - label: "Tagline"
+            name: tagline
+            widget: text
+            hint: "Press Enter between lines. First line: 'shifting the narrative,' — second line: 'changing the system.'"
+
+          - label: "Pillar 1 — New Economic Systems"
+            name: pillar1
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+
+          - label: "Pillar 2 — Power & Movements"
+            name: pillar2
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+
+          - label: "Pillar 3 — Planetary Wellbeing"
+            name: pillar3
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+
+          - label: "Work Section Intro"
+            name: work_intro
+            widget: text
+
+          - label: "Podcast"
+            name: podcast
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: "Body — Paragraph 1", name: body1, widget: text }
+              - { label: "Body — Paragraph 2", name: body2, widget: text }
+              - { label: "Listeners Label", name: listeners_label, widget: string, hint: "e.g. 'Join our 10,000 monthly listeners:'" }
+
+          - label: "Substack"
+            name: substack
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+
+          - label: "Socials"
+            name: socials
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+
+          - label: "Michael Mezz — Founder"
+            name: founder
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+
+          - label: "Footer Text"
+            name: footer_text
+            widget: text
+
+      - name: about
+        label: About Page
+        file: content/about.json
+        format: json
+        fields:
+          - label: "Paragraph 1"
+            name: paragraph1
+            widget: text
+          - label: "Paragraph 2"
+            name: paragraph2
+            widget: text
+          - label: "Footer Text"
+            name: footer_text
+            widget: text

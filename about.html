@@ -325,15 +325,15 @@
   <!-- ABOUT CONTENT -->
   <div class="about-content">
     <main class="about-body">
-      <p>Better Future Media builds narratives that <em>challenge&nbsp;extractive&nbsp;systems</em> and steer society toward a <em>more&nbsp;regenerative&nbsp;future</em>. We believe that the old world – which has been propped up by extractive economic, political, and social systems – is dying, and the new world won't arrive on its own. It must be built deliberately, by shifting power away from capital and toward people and communities. We create media to accelerate this shift.</p>
+      <p data-content="paragraph1">Better Future Media builds narratives that <em>challenge&nbsp;extractive&nbsp;systems</em> and steer society toward a <em>more&nbsp;regenerative&nbsp;future</em>. We believe that the old world – which has been propped up by extractive economic, political, and social systems – is dying, and the new world won't arrive on its own. It must be built deliberately, by shifting power away from capital and toward people and communities. We create media to accelerate this shift.</p>
 
-      <p>We believe that a better future – one that is <em>more&nbsp;just,&nbsp;more&nbsp;abundant,&nbsp;and&nbsp;more&nbsp;sustainable</em> – is possible, but only if we confront power, change course, and build that world. And crucially: it's already happening. Our role is to find and amplify these stories through media formats and platforms that billions of people use to make sense of the world today.</p>
+      <p data-content="paragraph2">We believe that a better future – one that is <em>more&nbsp;just,&nbsp;more&nbsp;abundant,&nbsp;and&nbsp;more&nbsp;sustainable</em> – is possible, but only if we confront power, change course, and build that world. And crucially: it's already happening. Our role is to find and amplify these stories through media formats and platforms that billions of people use to make sense of the world today.</p>
     </main>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <p class="footer-text">Whether you're a collaborator with a story worth telling, someone who wants to support our work, or just wants to connect — we'd love to hear from you.</p>
+    <p class="footer-text" data-content="footer_text">Whether you're a collaborator with a story worth telling, someone who wants to support our work, or just wants to connect — we'd love to hear from you.</p>
     <a class="footer-email" href="mailto:hi@betterfuture.media">HI@BETTERFUTURE.MEDIA</a>
   </footer>
 
@@ -347,6 +347,21 @@
       menu.classList.remove('open');
       document.body.style.overflow = '';
     });
+
+    // ── Content loading from CMS ───────────────────────────────
+    fetch('/content/about.json')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        function set(key, val) {
+          var el = document.querySelector('[data-content="' + key + '"]');
+          if (!el || val == null) return;
+          el.textContent = val;
+        }
+        set('paragraph1', d.paragraph1);
+        set('paragraph2', d.paragraph2);
+        set('footer_text', d.footer_text);
+      })
+      .catch(function() { /* fail silently — HTML fallback content shows */ });
   </script>
 </body>
 </html>
