@@ -29,16 +29,27 @@ module.exports = async function handler(req, res) {
         return;
       }
 
-      const payload = JSON.stringify({ token, provider: 'github' });
       res.setHeader('Content-Type', 'text/html');
       res.send(`<!DOCTYPE html><html><body>
         <p style="font-family:sans-serif;padding:2rem">Authenticating — this window will close automatically.</p>
         <script>
         (function () {
-          var payload = ${JSON.stringify(payload)};
+          var token = ${JSON.stringify(token)};
+          var msg = 'authorization:github:success:' + JSON.stringify({ token: token, provider: 'github' });
+
+          function finish() {
+            window.opener.postMessage(msg, '*');
+            setTimeout(function () { window.close(); }, 500);
+          }
+
           if (window.opener) {
-            window.opener.postMessage('authorization:github:success:' + payload, '*');
-            setTimeout(function() { window.close(); }, 500);
+            // Try sending directly (Decap CMS v3)
+            finish();
+            // Also respond to handshake in case CMS replies (older protocol)
+            window.addEventListener('message', function (e) {
+              if (e.data === 'authorizing:github') finish();
+            }, false);
+            window.opener.postMessage('authorizing:github', '*');
           } else {
             document.body.innerHTML = '<p style="font-family:sans-serif;padding:2rem">Authentication complete — you can close this window and return to the CMS.</p>';
           }
