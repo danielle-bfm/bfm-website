@@ -213,7 +213,7 @@
     .torn-transition {
       position: relative;
       height: max(30vw, calc(47vw - 250px));
-      margin-top: -27vw; /* overlap the bottom of the hero */
+      margin-top: calc(-27vw + 10px); /* overlap the bottom of the hero, shifted down 10px */
       z-index: 4;
       overflow: hidden;
       pointer-events: none;
@@ -313,7 +313,8 @@
     .work-description p {
       font-family: 'CraftedCalm', sans-serif;
       font-size: 30px;
-      line-height: 1.7;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
       color: var(--cream);
       font-style: normal;
     }
