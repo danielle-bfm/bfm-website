@@ -32,9 +32,9 @@
     "title": "Better Future Media on Socials",
     "body": "Short-form video and written content that meets people where they are and brings them into a deeper conversation. Our social channels on Instagram, TikTok, and Threads serve as entry points into the ideas, movements, and stories we cover across the podcast and Substack.",
     "instagram_url": "https://www.instagram.com/betterfuture.media/",
-    "tiktok_url": "",
-    "threads_url": "",
-    "bluesky_url": ""
+    "tiktok_url": "www.tiktok.com",
+    "threads_url": "www.threads.com",
+    "bluesky_url": "www.bsky.app"
   },
   "founder": {
     "title": "Michael Mezz (Our founder)",
@@ -42,5 +42,5 @@
     "instagram_url": "https://www.instagram.com/michael__mezz/",
     "tiktok_url": "https://www.tiktok.com/@michael_mezz"
   },
-  "footer_text": "Whether you're a collaborator with a story worth telling, someone who wants to support our work, or just wants to connect — we'd love to hear from you."
+  "footer_text": "Whether you're a collaborator with a story, someone who wants to support our work, or just wants to connect — we'd love to hear from you."
 }
