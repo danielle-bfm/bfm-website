@@ -87,8 +87,13 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Body, name: body, widget: text }
-              - { label: "Instagram URL", name: instagram_url, widget: string }
-              - { label: "TikTok URL", name: tiktok_url, widget: string }
+              - { label: "Instagram URL", name: instagram_url, widget: string, required: false }
+              - { label: "TikTok URL", name: tiktok_url, widget: string, required: false }
+              - { label: "YouTube URL", name: youtube_url, widget: string, required: false }
+              - { label: "Substack URL", name: substack_url, widget: string, required: false }
+              - { label: "Threads URL", name: threads_url, widget: string, required: false }
+              - { label: "LinkedIn URL", name: linkedin_url, widget: string, required: false }
+              - { label: "Website URL", name: website_url, widget: string, required: false, hint: "Any additional link — label will show as 'Website'" }
 
           - label: "Footer Text"
             name: footer_text
