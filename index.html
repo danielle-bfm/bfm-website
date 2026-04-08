@@ -184,7 +184,7 @@
       align-items: center;
     }
     .hero-bird {
-      width: clamp(104px, 23.4vw, 208px);
+      width: clamp(135px, 30.4vw, 270px);
       height: auto;
       margin-bottom: 20px;
     }
@@ -263,10 +263,8 @@
       flex: 1;
       padding: 36px 28px 44px;
       position: relative;
-      /* paper-card shadow */
-      box-shadow:
-        2px 4px 12px rgba(34,33,20,0.14),
-        0 0 0 1px rgba(34,33,20,0.06);
+      /* desktop: directional bottom shadow X0 Y2 */
+      box-shadow: 0 2px 12px rgba(34,33,20,0.14);
     }
     /* Collage: each card at a slightly different angle & vertical offset */
     .pillar:nth-child(1) {
@@ -289,22 +287,18 @@
     .pillar h2 {
       font-family: 'CraftedCalm', sans-serif;
       font-weight: normal;
-      font-size: clamp(16px, 1.8vw, 22px);
+      font-size: 40px;
       line-height: 1.2;
       margin-bottom: 16px;
-      color: var(--brown);
+      color: #222214;
     }
-    .pillar-rust h2  { color: var(--cream); }
-    .pillar-olive h2 { color: var(--near-black); }
 
     .pillar p {
       font-family: 'SpaceMono', monospace;
-      font-size: 12px;
-      line-height: 1.75;
-      color: var(--brown);
+      font-size: 25px;
+      line-height: 1.1;
+      color: #222214;
     }
-    .pillar-rust p  { color: var(--cream); opacity: 0.92; }
-    .pillar-olive p { color: var(--near-black); }
 
     /* ─── WORK / ACCORDION ───────────────────────────────────── */
     .work {
@@ -385,12 +379,20 @@
     .accordion-item.open .accordion-panel { max-height: 440px; }
     .accordion-panel-inner { padding: 0 40px 28px; }
     .accordion-panel-inner p {
-      font-family: 'SpaceMono', monospace;
-      font-size: 12px;
-      line-height: 1.85;
+      font-family: 'CraftedCalm', sans-serif;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
       color: var(--cream);
       opacity: 0.82;
       margin-bottom: 14px;
+    }
+    /* CTA "join us at..." labels stay in SpaceMono */
+    .accordion-panel-inner .accordion-label {
+      font-family: 'SpaceMono', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      letter-spacing: 0;
     }
     .accordion-panel-inner p:last-child { margin-bottom: 0; }
     .accordion-links {
@@ -468,6 +470,17 @@
       }
       .accordion-btn { padding: 18px 24px; }
       .accordion-panel-inner { padding: 0 24px 24px; }
+      /* Mobile: restore all-around shadow on value cards */
+      .pillar {
+        box-shadow:
+          2px 4px 12px rgba(34,33,20,0.14),
+          0 0 0 1px rgba(34,33,20,0.06);
+      }
+      /* Mobile font sizes: value cards */
+      .pillar h2 { font-size: 24px; }
+      .pillar p  { font-size: 16px; }
+      /* Mobile font sizes: accordion bulk text */
+      .accordion-panel-inner p { font-size: 16px; }
 
       footer { padding: 48px 24px 56px; }
     }
