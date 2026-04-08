@@ -224,7 +224,7 @@
     .torn-transition {
       position: relative;
       height: max(30vw, calc(47vw - 250px));
-      margin-top: clamp(-420px, calc(-27vw + 15px), -180px); /* clamp: floor prevents nav overlap, ceiling keeps paper close to hero bottom */
+      margin-top: calc(-27vw + 20px);
       z-index: 4;
       overflow: hidden;
       pointer-events: none;
@@ -415,13 +415,14 @@
     .accordion-panel-inner .accordion-label {
       font-family: 'SpaceMono', monospace;
       font-size: 24px;
-      line-height: 1.6;
+      line-height: 1.2;
       letter-spacing: 0;
     }
     .accordion-panel-inner p:last-child { margin-bottom: 0; }
     .accordion-links {
       font-family: 'SpaceMono', monospace;
       font-size: 24px;
+      line-height: 1.2;
       opacity: 1 !important;
       color: var(--gold) !important;
     }
@@ -497,7 +498,9 @@
       .nav-submark  { display: block; }
       .nav-about    { display: none; }
       .nav-hamburger { display: flex; }
-      .torn-transition { margin-top: clamp(-300px, calc(-27vw + 5px), -80px); }
+      .torn-transition { margin-top: calc(-27vw + 5px); }
+      .hero-tagline { font-size: clamp(21px, 2.6vw, 36px); }
+      .hero-title { font-size: clamp(19px, 5.5vw, 73px); }
       .hero-bird { width: 229px; } /* 30% larger than updated desktop on mobile */
 
       .pillars-heading { font-size: 24px; padding: 48px 24px 0; }
@@ -525,10 +528,6 @@
       .footer-email { font-size: 18px; }
     }
 
-    /* Wide desktop: shift torn paper down to maintain gap below subtitle */
-    @media (min-width: 1400px) {
-      .torn-transition { margin-top: clamp(-380px, calc(-27vw + 120px), -180px); }
-    }
   </style>
 </head>
 <body>
