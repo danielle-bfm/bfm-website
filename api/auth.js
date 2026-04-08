@@ -31,17 +31,24 @@ module.exports = async function handler(req, res) {
 
       const payload = JSON.stringify({ token, provider: 'github' });
       res.setHeader('Content-Type', 'text/html');
-      res.send(`<!DOCTYPE html><html><body><script>
+      res.send(`<!DOCTYPE html><html><body>
+        <p style="font-family:sans-serif;padding:2rem">Authenticating — this window will close automatically.</p>
+        <script>
         (function () {
           var payload = ${JSON.stringify(payload)};
           function onMessage(e) {
             window.opener.postMessage('authorization:github:success:' + payload, e.origin);
             window.close();
           }
-          window.addEventListener('message', onMessage, false);
-          window.opener.postMessage('authorizing:github', '*');
+          if (window.opener) {
+            window.addEventListener('message', onMessage, false);
+            window.opener.postMessage('authorizing:github', '*');
+          } else {
+            document.body.innerHTML = '<p style="font-family:sans-serif;padding:2rem">Authentication complete — you can close this window and return to the CMS.</p>';
+          }
         })();
-      </script></body></html>`);
+        </script>
+      </body></html>`);
     } catch (err) {
       res.status(500).send('OAuth error: ' + err.message);
     }
