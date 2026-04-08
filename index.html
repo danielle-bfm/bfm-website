@@ -254,8 +254,8 @@
     /* ─── PILLARS — COLLAGE LAYOUT ───────────────────────────── */
     .pillars-heading {
       font-family: 'CraftedCalm', sans-serif;
-      font-weight: normal;
-      font-size: 30px;
+      font-weight: bold;
+      font-size: 40px;
       text-align: center;
       color: var(--near-black);
       padding: 64px 5% 0;
@@ -296,7 +296,7 @@
     .pillar h2 {
       font-family: 'CraftedCalm', sans-serif;
       font-weight: normal;
-      font-size: 40px;
+      font-size: 35px;
       line-height: 1.2;
       margin-bottom: 16px;
       color: #222214;
@@ -304,7 +304,7 @@
 
     .pillar p {
       font-family: 'SpaceMono', monospace;
-      font-size: 21px;
+      font-size: 16px;
       line-height: 1.1;
       color: #222214;
     }
@@ -453,6 +453,28 @@
     .footer-email:hover { opacity: 0.75; }
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    /* Stack pillars as column earlier to avoid awkward tall-card layout */
+    @media (max-width: 1100px) {
+      .pillars {
+        flex-direction: column;
+        padding: 24px 5% 56px;
+        gap: 24px;
+      }
+      .pillar:nth-child(1),
+      .pillar:nth-child(2),
+      .pillar:nth-child(3) {
+        transform: none;
+        margin-top: 0;
+        flex: none;
+        width: 100%;
+      }
+      .pillar {
+        box-shadow:
+          2px 4px 12px rgba(34,33,20,0.14),
+          0 0 0 1px rgba(34,33,20,0.06);
+      }
+    }
+
     @media (max-width: 768px) {
       nav {
         padding: 16px 20px;
@@ -467,20 +489,7 @@
       .hero-bird { width: 176px; } /* 30% larger than desktop min on mobile */
 
       .pillars-heading { font-size: 24px; padding: 48px 24px 0; }
-      .pillars {
-        flex-direction: column;
-        padding: 24px 24px 56px;
-        gap: 24px;
-      }
-      /* No rotations on mobile — too cramped */
-      .pillar:nth-child(1),
-      .pillar:nth-child(2),
-      .pillar:nth-child(3) {
-        transform: none;
-        margin-top: 0;
-        flex: none;
-        width: 100%;
-      }
+      .pillars { padding: 24px 24px 56px; }
 
       .work { grid-template-columns: 1fr; }
       .work-description {
@@ -493,12 +502,6 @@
       .accordion-title { font-size: 24px; }
       .work-description p { font-size: 18px; }
       .accordion-panel-inner .accordion-label { font-size: 16px; }
-      /* Mobile: restore all-around shadow on value cards */
-      .pillar {
-        box-shadow:
-          2px 4px 12px rgba(34,33,20,0.14),
-          0 0 0 1px rgba(34,33,20,0.06);
-      }
       /* Mobile font sizes: value cards */
       .pillar h2 { font-size: 24px; }
       .pillar p  { font-size: 16px; line-height: 1.1; }
