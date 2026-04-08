@@ -17,19 +17,30 @@
     "title": "Better Future Podcast",
     "body1": "Long-form conversations with the organizers, economists, politicians, and thinkers contributing to the movement.",
     "body2": "Each episode dives into the systems shaping our lives to ask: who holds power here, what does the alternative look like, and how can we bring this vision to life?",
-    "listeners_label": "Join our XX monthly listeners:"
+    "listeners_label": "Join our XX monthly listeners:",
+    "youtube_url": "https://www.youtube.com/playlist?list=PLqoX_ncE2lEJvELD5N-xnQV56T96QDWNM",
+    "spotify_url": "https://open.spotify.com/show/16K0dkbk35q0mTslKJJ7z0",
+    "apple_url": "https://podcasts.apple.com/tt/podcast/better-future-with-michael-mezz/id1823942833"
   },
   "substack": {
     "title": "Better Future Media on Substack",
-    "body": "Our essays cover the stories, ideas, and movements at the intersection of economic justice, political power, and ecological health. Reported pieces, analysis, and resources for readers who want to dive deeper."
+    "body": "Our essays cover the stories, ideas, and movements at the intersection of economic justice, political power, and ecological health. Reported pieces, analysis, and resources for readers who want to dive deeper.",
+    "subscribers_label": "Join +4,000 other readers and subscribe to our Substack",
+    "url": "https://michaelmezzatesta.substack.com/"
   },
   "socials": {
     "title": "Better Future Media on Socials",
-    "body": "Short-form video and written content that meets people where they are and brings them into a deeper conversation. Our social channels on Instagram, TikTok, and Threads serve as entry points into the ideas, movements, and stories we cover across the podcast and Substack."
+    "body": "Short-form video and written content that meets people where they are and brings them into a deeper conversation. Our social channels on Instagram, TikTok, and Threads serve as entry points into the ideas, movements, and stories we cover across the podcast and Substack.",
+    "instagram_url": "https://www.instagram.com/betterfuture.media/",
+    "tiktok_url": "",
+    "threads_url": "",
+    "bluesky_url": ""
   },
   "founder": {
     "title": "Michael Mezz (Our founder)",
-    "body": "Better Future Media is founded and led by Michael Mezzatesta — a content creator and digital strategist who has spent over a decade building audiences for social and environmental causes that matter. His short-form video channels, which translate complex economic, political, and environmental issues, has amassed over 500,000 followers and reaches millions of viewers each month."
+    "body": "Better Future Media is founded and led by Michael Mezzatesta — a content creator and digital strategist who has spent over a decade building audiences for social and environmental causes that matter. His short-form video channels, which translate complex economic, political, and environmental issues, has amassed over 500,000 followers and reaches millions of viewers each month.",
+    "instagram_url": "https://www.instagram.com/michael__mezz/",
+    "tiktok_url": "https://www.tiktok.com/@michael_mezz"
   },
   "footer_text": "Whether you're a collaborator with a story worth telling, someone who wants to support our work, or just wants to connect — we'd love to hear from you."
 }

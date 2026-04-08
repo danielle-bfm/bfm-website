@@ -561,11 +561,11 @@
               <p data-content="podcast_body2">Each episode dives into the systems shaping our lives to ask: who holds power here, what does the alternative look like, and how can we bring this vision to life?</p>
               <p class="accordion-label" data-content="podcast_listeners_label">Join our XX monthly listeners:</p>
               <p class="accordion-links">
-                <a href="https://www.youtube.com/playlist?list=PLqoX_ncE2lEJvELD5N-xnQV56T96QDWNM" target="_blank" rel="noopener">Youtube</a>
+                <a data-content="podcast_youtube_url" href="https://www.youtube.com/playlist?list=PLqoX_ncE2lEJvELD5N-xnQV56T96QDWNM" target="_blank" rel="noopener">Youtube</a>
                 &nbsp;|&nbsp;
-                <a href="https://open.spotify.com/show/16K0dkbk35q0mTslKJJ7z0" target="_blank" rel="noopener">Spotify</a>
+                <a data-content="podcast_spotify_url" href="https://open.spotify.com/show/16K0dkbk35q0mTslKJJ7z0" target="_blank" rel="noopener">Spotify</a>
                 &nbsp;|&nbsp;
-                <a href="https://podcasts.apple.com/tt/podcast/better-future-with-michael-mezz/id1823942833" target="_blank" rel="noopener">Apple</a>
+                <a data-content="podcast_apple_url" href="https://podcasts.apple.com/tt/podcast/better-future-with-michael-mezz/id1823942833" target="_blank" rel="noopener">Apple</a>
               </p>
             </div>
           </div>
@@ -584,7 +584,7 @@
             <div class="accordion-panel-inner">
               <p data-content="substack_body">Our essays cover the stories, ideas, and movements at the intersection of economic justice, political power, and ecological health. Reported pieces, analysis, and resources for readers who want to dive deeper.</p>
               <!-- UPDATE: subscriber count -->
-              <p class="accordion-label">Join +4,000 other readers and subscribe to our <a href="https://michaelmezzatesta.substack.com/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;">Substack</a></p>
+              <p class="accordion-label" data-content="substack_subscribers_label">Join +4,000 other readers and subscribe to our <a data-content="substack_url" href="https://michaelmezzatesta.substack.com/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;">Substack</a></p>
             </div>
           </div>
         </div>
@@ -602,13 +602,13 @@
             <div class="accordion-panel-inner">
               <p data-content="socials_body">Short-form video and written content that meets people where they are and brings them into a deeper conversation. Our social channels on Instagram, TikTok, and Threads serve as entry points into the ideas, movements, and stories we cover across the podcast and Substack.</p>
               <p class="accordion-links">
-                <a href="https://www.instagram.com/betterfuture.media/" target="_blank" rel="noopener">Instagram</a>
+                <a data-content="socials_instagram_url" href="https://www.instagram.com/betterfuture.media/" target="_blank" rel="noopener">Instagram</a>
                 &nbsp;|&nbsp;
-                <a href="#" target="_blank" rel="noopener">TikTok</a>
+                <a data-content="socials_tiktok_url" href="#" target="_blank" rel="noopener">TikTok</a>
                 &nbsp;|&nbsp;
-                <a href="#" target="_blank" rel="noopener">Threads</a>
+                <a data-content="socials_threads_url" href="#" target="_blank" rel="noopener">Threads</a>
                 &nbsp;|&nbsp;
-                <a href="#" target="_blank" rel="noopener">Bluesky</a>
+                <a data-content="socials_bluesky_url" href="#" target="_blank" rel="noopener">Bluesky</a>
               </p>
             </div>
           </div>
@@ -627,9 +627,9 @@
             <div class="accordion-panel-inner">
               <p data-content="founder_body">Better Future Media is founded and led by Michael Mezzatesta — a content creator and digital strategist who has spent over a decade building audiences for social and environmental causes that matter. His short-form video channels, which translate complex economic, political, and environmental issues, has amassed over 500,000 followers and reaches millions of viewers each month.</p>
               <p class="accordion-links">
-                <a href="https://www.instagram.com/michael__mezz/" target="_blank" rel="noopener">Instagram</a>
+                <a data-content="founder_instagram_url" href="https://www.instagram.com/michael__mezz/" target="_blank" rel="noopener">Instagram</a>
                 &nbsp;|&nbsp;
-                <a href="https://www.tiktok.com/@michael_mezz" target="_blank" rel="noopener">TikTok</a>
+                <a data-content="founder_tiktok_url" href="https://www.tiktok.com/@michael_mezz" target="_blank" rel="noopener">TikTok</a>
               </p>
             </div>
           </div>
@@ -706,8 +706,13 @@
       .then(function(d) {
         function set(key, val) {
           var el = document.querySelector('[data-content="' + key + '"]');
-          if (!el || val == null) return;
+          if (!el || val == null || val === '') return;
           el.textContent = val;
+        }
+        function setHref(key, val) {
+          var el = document.querySelector('[data-content="' + key + '"]');
+          if (!el || val == null || val === '') return;
+          el.href = val;
         }
         // Tagline: convert newlines to <br>
         var tEl = document.querySelector('[data-content="tagline"]');
@@ -722,10 +727,36 @@
           set('podcast_body1', d.podcast.body1);
           set('podcast_body2', d.podcast.body2);
           set('podcast_listeners_label', d.podcast.listeners_label);
+          setHref('podcast_youtube_url', d.podcast.youtube_url);
+          setHref('podcast_spotify_url', d.podcast.spotify_url);
+          setHref('podcast_apple_url',   d.podcast.apple_url);
         }
-        if (d.substack) { set('substack_title', d.substack.title); set('substack_body', d.substack.body); }
-        if (d.socials)  { set('socials_title', d.socials.title);   set('socials_body', d.socials.body); }
-        if (d.founder)  { set('founder_title', d.founder.title);   set('founder_body', d.founder.body); }
+        if (d.substack) {
+          set('substack_title', d.substack.title);
+          set('substack_body',  d.substack.body);
+          setHref('substack_url', d.substack.url);
+          // subscribers label contains a nested link so handle carefully
+          var subLabel = document.querySelector('[data-content="substack_subscribers_label"]');
+          if (subLabel && d.substack.subscribers_label) {
+            var subLink = subLabel.querySelector('a');
+            subLabel.childNodes[0].textContent = d.substack.subscribers_label.replace('Substack', '').trim() + ' ';
+            if (subLink) subLink.textContent = 'Substack';
+          }
+        }
+        if (d.socials) {
+          set('socials_title', d.socials.title);
+          set('socials_body',  d.socials.body);
+          setHref('socials_instagram_url', d.socials.instagram_url);
+          setHref('socials_tiktok_url',    d.socials.tiktok_url);
+          setHref('socials_threads_url',   d.socials.threads_url);
+          setHref('socials_bluesky_url',   d.socials.bluesky_url);
+        }
+        if (d.founder) {
+          set('founder_title', d.founder.title);
+          set('founder_body',  d.founder.body);
+          setHref('founder_instagram_url', d.founder.instagram_url);
+          setHref('founder_tiktok_url',    d.founder.tiktok_url);
+        }
         set('footer_text', d.footer_text);
       })
       .catch(function() { /* fail silently — HTML fallback content shows */ });
