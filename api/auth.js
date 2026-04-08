@@ -32,19 +32,29 @@ module.exports = async function handler(req, res) {
       res.setHeader('Content-Type', 'text/html');
       res.send(`<!DOCTYPE html><html><body>
         <p style="font-family:sans-serif;padding:2rem">Authenticating — this window will close automatically.</p>
+        <ul id="log" style="font-family:monospace;font-size:12px;padding:1rem 2rem;"></ul>
         <script>
         (function () {
           var token = ${JSON.stringify(token)};
           var msg = 'authorization:github:success:' + JSON.stringify({ token: token, provider: 'github' });
 
+          var log = document.getElementById('log');
+          function addLog(text) {
+            var li = document.createElement('li');
+            li.textContent = text;
+            log.appendChild(li);
+          }
+
           if (window.opener) {
+            addLog('opener found, listening for messages...');
             window.addEventListener('message', function (e) {
-              if (e.data === 'authorizing:github') {
+              addLog('received: ' + JSON.stringify(e.data) + ' from ' + e.origin);
+              if (typeof e.data === 'string' && e.data.indexOf('authorizing') !== -1) {
+                addLog('sending token to ' + e.origin);
                 window.opener.postMessage(msg, e.origin);
                 setTimeout(function () { window.close(); }, 1000);
               }
             }, false);
-            window.opener.postMessage('authorizing:github', '*');
           } else {
             document.body.innerHTML = '<p style="font-family:sans-serif;padding:2rem">Authentication complete — you can close this window and return to the CMS.</p>';
           }
