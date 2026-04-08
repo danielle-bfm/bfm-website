@@ -3,6 +3,14 @@
 const CLIENT_ID = process.env.GITHUB_CLIENT_ID || 'Ov23lic2inAPIwkvHH2T';
 
 module.exports = async function handler(req, res) {
+  // Force non-www so postMessage origin matches the CMS
+  const host = req.headers.host || '';
+  if (host.startsWith('www.')) {
+    const url = 'https://betterfuture.media' + req.url;
+    res.redirect(302, url);
+    return;
+  }
+
   const { code } = req.query;
 
   // ── Callback: exchange code for token ─────────────────────────
