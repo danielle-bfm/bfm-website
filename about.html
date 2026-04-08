@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Better Future Media</title>
+  <link rel="icon" href="Star Submark (1).png" type="image/png">
+  <meta property="og:image" content="/Thumbnail.png">
+  <meta name="twitter:image" content="/Thumbnail.png">
   <style>
     /* ─── FONTS ─────────────────────────────────────────────── */
     @font-face {
@@ -200,6 +203,7 @@
       margin-top: -2px;
       position: relative;
       z-index: 2;
+      overflow: visible;
     }
 
     /* ─── ABOUT BODY ─────────────────────────────────────────── */
@@ -210,12 +214,12 @@
       z-index: 1;
     }
 
-    /* Star Submark watermark in cream section */
+    /* Star Submark watermark — sits above torn transition */
     .about-content::before {
       content: '';
       position: absolute;
       right: 6%;
-      top: -20px;
+      top: -60px;
       width: 483px;
       height: 483px;
       background-image: url('Star%20Submark.png');
@@ -224,12 +228,12 @@
       background-position: center;
       opacity: 0.39;
       pointer-events: none;
-      z-index: 0;
+      z-index: 5;
     }
 
     .about-body p {
       font-family: 'CraftedCalm', sans-serif;
-      font-size: 31px;
+      font-size: 26px;
       line-height: 1.1;
       letter-spacing: 0.02em;
       color: var(--near-black);

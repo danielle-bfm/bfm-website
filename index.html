@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Better Future Media</title>
   <link rel="icon" href="Star Submark (1).png" type="image/png">
+  <meta property="og:image" content="/Thumbnail.png">
+  <meta name="twitter:image" content="/Thumbnail.png">
   <style>
     /* ─── FONTS ─────────────────────────────────────────────── */
     @font-face {
@@ -184,7 +186,7 @@
       align-items: center;
     }
     .hero-bird {
-      width: clamp(135px, 30.4vw, 270px);
+      width: clamp(162px, 36.5vw, 324px);
       height: auto;
       margin-bottom: 20px;
     }
@@ -201,7 +203,7 @@
     .hero-tagline {
       font-family: 'SpaceMono', monospace;
       font-style: italic;
-      font-size: clamp(18px, 2vw, 29px);
+      font-size: clamp(23px, 2.6vw, 38px);
       color: var(--cream);
       line-height: 1.65;
     }
@@ -403,14 +405,14 @@
     /* CTA "join us at..." labels stay in SpaceMono */
     .accordion-panel-inner .accordion-label {
       font-family: 'SpaceMono', monospace;
-      font-size: 20px;
+      font-size: 24px;
       line-height: 1.6;
       letter-spacing: 0;
     }
     .accordion-panel-inner p:last-child { margin-bottom: 0; }
     .accordion-links {
       font-family: 'SpaceMono', monospace;
-      font-size: 20px;
+      font-size: 24px;
       opacity: 1 !important;
       color: var(--gold) !important;
     }
@@ -487,7 +489,7 @@
       .nav-about    { display: none; }
       .nav-hamburger { display: flex; }
       .torn-transition { margin-top: calc(-27vw + 5px); } /* 10px higher than desktop on mobile */
-      .hero-bird { width: 176px; } /* 30% larger than desktop min on mobile */
+      .hero-bird { width: 229px; } /* 30% larger than updated desktop on mobile */
 
       .pillars-heading { font-size: 24px; padding: 48px 24px 0; }
       .pillars { padding: 24px 24px 56px; }
@@ -512,6 +514,11 @@
       footer { padding: 48px 24px 56px; }
       .footer-text { font-size: 18px; }
       .footer-email { font-size: 18px; }
+    }
+
+    /* Wide desktop: torn paper needs extra downward shift at large widths */
+    @media (min-width: 1400px) {
+      .torn-transition { margin-top: calc(-27vw + 25px); }
     }
   </style>
 </head>
