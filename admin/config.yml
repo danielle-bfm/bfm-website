@@ -2,9 +2,8 @@ backend:
   name: github
   repo: danielle-bfm/bfm-website
   branch: main
-  base_url: https://betterfuture.media
-  auth_endpoint: api/auth
-  auth_scope: repo
+  auth_type: pkce
+  app_id: Ov23lic2inAPIwkvHH2T
 
 site_url: https://betterfuture.media
 media_folder: images/uploads
