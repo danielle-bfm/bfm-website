@@ -25,15 +25,15 @@
   "substack": {
     "title": "Better Future Media on Substack",
     "body": "Our essays cover the stories, ideas, and movements at the intersection of economic justice, political power, and ecological health. Reported pieces, analysis, and resources for readers who want to dive deeper.",
-    "url": "https://michaelmezzatesta.substack.com/"
+    "url": "https://betterfuturemedia.substack.com/"
   },
   "socials": {
     "title": "Better Future social media",
     "body": "We publish short-form video and written content that brings our audience into a deeper conversation about systems change. Our social channels on Instagram, TikTok, and Threads serve as entry points into the ideas, movements, and stories we cover on the podcast and Substack.",
     "instagram_url": "https://www.instagram.com/betterfuture.media/",
-    "tiktok_url": "www.tiktok.com",
-    "threads_url": "www.threads.com",
-    "bluesky_url": "www.bsky.app"
+    "tiktok_url": "",
+    "threads_url": "",
+    "bluesky_url": ""
   },
   "founder": {
     "title": "Michael Mezz (our founder)",
