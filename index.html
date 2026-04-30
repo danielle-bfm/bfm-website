@@ -661,14 +661,11 @@
           <div class="accordion-panel">
             <div class="accordion-panel-inner">
               <p data-content="socials_body">Short-form video and written content that meets people where they are and brings them into a deeper conversation. Our social channels on Instagram, TikTok, and Threads serve as entry points into the ideas, movements, and stories we cover across the podcast and Substack.</p>
-              <p class="accordion-links">
-                <a data-content="socials_instagram_url" href="https://www.instagram.com/betterfuture.media/" target="_blank" rel="noopener">Instagram</a>
-                &nbsp;|&nbsp;
-                <a data-content="socials_tiktok_url" href="#" target="_blank" rel="noopener">TikTok</a>
-                &nbsp;|&nbsp;
-                <a data-content="socials_threads_url" href="#" target="_blank" rel="noopener">Threads</a>
-                &nbsp;|&nbsp;
-                <a data-content="socials_bluesky_url" href="#" target="_blank" rel="noopener">Bluesky</a>
+              <p class="accordion-links" id="socials-links">
+                <a data-socials-link="instagram" href="https://www.instagram.com/betterfuture.media/" target="_blank" rel="noopener" style="display:none">Instagram</a>
+                <a data-socials-link="tiktok" href="#" target="_blank" rel="noopener" style="display:none">TikTok</a>
+                <a data-socials-link="threads" href="#" target="_blank" rel="noopener" style="display:none">Threads</a>
+                <a data-socials-link="bluesky" href="#" target="_blank" rel="noopener" style="display:none">Bluesky</a>
               </p>
             </div>
           </div>
@@ -685,7 +682,7 @@
           </button>
           <div class="accordion-panel">
             <div class="accordion-panel-inner">
-              <p id="founder-body-text">Better Future Media is founded and led by <a href="https://michaelmezzatesta.com/" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px;">Michael Mezzatesta</a> — a content creator and digital strategist who has spent over a decade building audiences for social and environmental causes that matter. His short-form video channels, which translate complex economic, political, and environmental issues, has amassed over 500,000 followers and reaches millions of viewers each month.</p>
+              <p id="founder-body-text">Better Future Media is founded and led by <a href="https://michaelmezzatesta.com/" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px;">Michael Mezzatesta</a>.</p>
               <p class="accordion-links" id="founder-links">
                 <a data-founder-link="instagram" href="https://www.instagram.com/michael__mezz/" target="_blank" rel="noopener">Instagram</a>
                 <a data-founder-link="tiktok" href="https://www.tiktok.com/@michael_mezz" target="_blank" rel="noopener">TikTok</a>
@@ -809,13 +806,38 @@
         if (d.socials) {
           set('socials_title', d.socials.title);
           set('socials_body',  d.socials.body);
-          setHref('socials_instagram_url', d.socials.instagram_url);
-          setHref('socials_tiktok_url',    d.socials.tiktok_url);
-          setHref('socials_threads_url',   d.socials.threads_url);
-          setHref('socials_bluesky_url',   d.socials.bluesky_url);
+          var socialsUrls = {
+            instagram: d.socials.instagram_url || '',
+            tiktok:    d.socials.tiktok_url    || '',
+            threads:   d.socials.threads_url   || '',
+            bluesky:   d.socials.bluesky_url   || ''
+          };
+          var socialsLinksEl = document.getElementById('socials-links');
+          if (socialsLinksEl) {
+            socialsLinksEl.querySelectorAll('[data-socials-link]').forEach(function(a) {
+              var key = a.getAttribute('data-socials-link');
+              var url = socialsUrls[key];
+              if (url) { a.href = url; a.style.display = ''; }
+              else { a.style.display = 'none'; }
+            });
+            var visibleSocials = Array.from(socialsLinksEl.querySelectorAll('[data-socials-link]')).filter(function(a) { return a.style.display !== 'none'; });
+            Array.from(socialsLinksEl.childNodes).forEach(function(n) { if (n.nodeType === 3) n.remove(); });
+            visibleSocials.forEach(function(a, i) {
+              if (i < visibleSocials.length - 1) a.insertAdjacentHTML('afterend', '&nbsp;|&nbsp;');
+            });
+          }
         }
         if (d.founder) {
           set('founder_title', d.founder.title);
+          if (d.founder.body) {
+            var founderBodyEl = document.getElementById('founder-body-text');
+            if (founderBodyEl) {
+              var bodyHtml = d.founder.body
+                .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+                .replace('Michael Mezzatesta', '<a href="https://michaelmezzatesta.com/" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px;">Michael Mezzatesta</a>');
+              founderBodyEl.innerHTML = bodyHtml;
+            }
+          }
           // Build founder links dynamically — show only links with a URL set
           var founderUrls = {
             instagram: d.founder.instagram_url || '',
