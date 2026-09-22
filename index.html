@@ -8,13 +8,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://betterfuture.media/">
   <meta property="og:title" content="Better Future Media">
-  <meta property="og:description" content="Shifting the narrative, changing the system. Better Future Media covers economic movements, political power, and planetary wellbeing.">
+  <meta property="og:description" content="Stories of the better future emerging all around us. Better Future Media covers economic movements, political power, and planetary wellbeing.">
   <meta property="og:image" content="https://betterfuture.media/Thumbnail.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Better Future Media">
-  <meta name="twitter:description" content="Shifting the narrative, changing the system.">
+  <meta name="twitter:description" content="Stories of the better future emerging all around us.">
   <meta name="twitter:image" content="https://betterfuture.media/Thumbnail.png">
   <style>
     /* ─── FONTS ─────────────────────────────────────────────── */
@@ -117,7 +117,8 @@
       color: var(--cream);
       display: flex;
       align-items: center;
-      transition: color 0.3s ease, opacity 0.2s;
+      filter: drop-shadow(0 1px 4px rgba(0,0,0,0.8));
+      transition: color 0.3s ease, opacity 0.2s, filter 0.3s ease;
     }
     .nav-social-icons a:hover { opacity: 0.6; }
     .nav-social-icons svg { width: 17px; height: 17px; }
@@ -622,7 +623,7 @@
     <div class="hero-content">
       <img class="hero-bird" src="Logo.png" alt="Better Future Media crane logo">
       <h1 class="hero-title">Better Future Media</h1>
-      <p class="hero-tagline" data-content="tagline">shifting the narrative,<br>changing the system.</p>
+      <p class="hero-tagline" data-content="tagline">stories of the better future<br>emerging all around us.</p>
     </div>
 
   </section>
@@ -824,14 +825,14 @@
         nav.style.boxShadow      = '0 1px 0 rgba(79,52,25,0.12)';
         wmark.style.filter       = 'none';
         alink.style.color        = 'var(--brown)';
-        socialIcons.forEach(function(a) { a.style.color = 'var(--brown)'; });
+        socialIcons.forEach(function(a) { a.style.color = 'var(--brown)'; a.style.filter = 'none'; });
       } else {
         nav.style.background     = 'transparent';
         nav.style.backdropFilter = 'none';
         nav.style.boxShadow      = 'none';
         wmark.style.filter       = 'brightness(0) invert(1) sepia(0.25) saturate(0.5) brightness(0.95)';
         alink.style.color        = 'var(--cream)';
-        socialIcons.forEach(function(a) { a.style.color = 'var(--cream)'; });
+        socialIcons.forEach(function(a) { a.style.color = 'var(--cream)'; a.style.filter = 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))'; });
       }
     }
     window.addEventListener('scroll', updateNav, { passive: true });
