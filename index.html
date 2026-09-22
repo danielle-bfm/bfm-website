@@ -948,5 +948,9 @@
       })
       .catch(function() { /* fail silently — HTML fallback content shows */ });
   </script>
+  <script type="module">
+    import { inject } from '/analytics.mjs';
+    inject();
+  </script>
 </body>
 </html>
