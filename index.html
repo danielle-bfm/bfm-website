@@ -576,6 +576,7 @@
     </a>
     <div class="nav-right">
       <a class="nav-about" href="/about">About</a>
+      <a class="nav-about" href="/podcast">Podcast</a>
       <div class="nav-social-icons">
         <a href="https://www.instagram.com/betterfuture.media/" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -613,6 +614,7 @@
     <nav class="mobile-menu-links">
       <a href="/">Home</a>
       <a href="/about">About</a>
+      <a href="/podcast">Podcast</a>
     </nav>
   </div>
 
@@ -813,7 +815,7 @@
     // ── Nav scroll (desktop only) ──────────────────────────────
     const nav   = document.getElementById('main-nav');
     const wmark = nav.querySelector('.nav-wordmark');
-    const alink = nav.querySelector('.nav-about');
+    const alinks = nav.querySelectorAll('.nav-about');
     const socialIcons = nav.querySelectorAll('.nav-social-icons a');
 
     function updateNav() {
@@ -824,14 +826,14 @@
         nav.style.backdropFilter = 'blur(8px)';
         nav.style.boxShadow      = '0 1px 0 rgba(79,52,25,0.12)';
         wmark.style.filter       = 'none';
-        alink.style.color        = 'var(--brown)';
+        alinks.forEach(function(a) { a.style.color = 'var(--brown)'; });
         socialIcons.forEach(function(a) { a.style.color = 'var(--brown)'; a.style.filter = 'none'; });
       } else {
         nav.style.background     = 'transparent';
         nav.style.backdropFilter = 'none';
         nav.style.boxShadow      = 'none';
         wmark.style.filter       = 'brightness(0) invert(1) sepia(0.25) saturate(0.5) brightness(0.95)';
-        alink.style.color        = 'var(--cream)';
+        alinks.forEach(function(a) { a.style.color = 'var(--cream)'; });
         socialIcons.forEach(function(a) { a.style.color = 'var(--cream)'; a.style.filter = 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))'; });
       }
     }
