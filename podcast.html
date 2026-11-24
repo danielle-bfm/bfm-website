@@ -126,8 +126,8 @@
         radial-gradient(ellipse 55% 60% at 18% 2%, #a3c637 0%, rgba(163,198,55,0) 70%),
         linear-gradient(118deg, #8fb434 0%, #6f9630 28%, #4e7a30 52%, #3a622f 75%, #2e542d 100%);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 560px;
-      column-gap: 0;
+      grid-template-columns: auto minmax(560px, 1fr);
+      column-gap: 48px;
       align-items: start;
       overflow: hidden;
     }
@@ -136,7 +136,7 @@
       letter-spacing: 0.14em; text-transform: uppercase;
       margin: 0 0 28px;
     }
-    .hero h1 { font-size: clamp(48px, calc((100vw - 688px) / 7.4), 100px); line-height: 0.9; letter-spacing: var(--track-display); }
+    .hero h1 { font-size: clamp(48px, calc((100vw - 736px) / 7.4), 100px); line-height: 0.9; letter-spacing: var(--track-display); }
     .hero h2 {
       font-family: var(--font-body); font-weight: 600;
       font-size: clamp(24px, 2.3vw, 33px); letter-spacing: -0.02em;
@@ -149,6 +149,7 @@
     .pill--ghost { color: var(--cream); }
 
     .cover {
+      width: 560px; justify-self: center; /* centered in the open space right of the text */
       margin-top: 37px;
       position: relative;
       transform: rotate(0.8deg);
@@ -284,6 +285,7 @@
       min-height: 775px;
       background: linear-gradient(100deg, #4a6f35 0%, #4d7335 35%, #5e872f 62%, #6f9831 100%);
       padding: 135px var(--gutter) 90px 115px;
+      display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 40px;
     }
     .host__text { position: relative; z-index: 1; max-width: min(660px, calc(54vw - 115px)); }
     .host__sub { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.22; letter-spacing: -0.015em; margin: 32px 0 34px; }
@@ -291,7 +293,8 @@
     /* Portrait + its light glow travel together, so the glow always sits behind his head */
     /* Full edited cut-out (shoulders finish inside the frame), sitting on the section's bottom edge */
     .host__portrait {
-      position: absolute; bottom: 0; right: 40px;
+      /* Centered in the open space right of the text; bleeds through the bottom padding to sit on the edge */
+      position: relative; justify-self: center; align-self: end; margin-bottom: -90px;
       width: clamp(520px, 48vw, 700px);
       aspect-ratio: 986 / 869;
     }
@@ -314,7 +317,8 @@
       .nav__right { gap: 28px; }
       .nav__links { gap: 26px; }
       .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 42%); }
-      .hero h1 { font-size: calc((100vw - 128px) * 0.075); }
+      .cover { width: auto; justify-self: stretch; }
+      .hero h1 { font-size: calc((100vw - 176px) * 0.072); }
       .listen__body { gap: 40px; }
       .phone { width: 320px; }
       .phone__title { font-size: 19px; }
@@ -324,7 +328,7 @@
       .platform svg { width: 40px; height: 40px; }
       .host { padding-left: var(--gutter); }
       .host__text { max-width: calc(54vw - var(--gutter)); }
-      .host__portrait { width: 48vw; right: 16px; }
+      .host__portrait { width: 48vw; }
     }
 
     /* ─── MOBILE ──────────────────────────────────────── */
