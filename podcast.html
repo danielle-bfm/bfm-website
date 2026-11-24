@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Better Future with Michael Mezz — The Podcast</title>
+  <meta name="description" content="The podcast for what comes next. Meaningful, future-driven conversations hosted by economist-turned-creator Michael Mezz.">
+  <link rel="canonical" href="https://betterfuture.media/podcast">
+  <link rel="icon" href="Star Submark (1).png" type="image/png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://betterfuture.media/podcast">
+  <meta property="og:title" content="Better Future with Michael Mezz">
+  <meta property="og:description" content="The podcast for what comes next. Future-driven, not doom-driven.">
+  <meta property="og:image" content="https://betterfuture.media/images/podcast/cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Placeholder fonts until the final font files arrive: swap --font-display / --font-body below. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f4f0e7;
+      --ink: #171a16;
+      --lime: #a7c636;
+      --lime-bright: #c8dc54;
+      --green-dark: #2e542d;
+      --rule: #ccc9c1;
+
+      --font-display: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+      --font-body: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
+
+      --gutter: clamp(20px, 5vw, 72px);
+      --ease-spring: cubic-bezier(.34, 1.4, .64, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .display {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.07em;
+      line-height: 0.9;
+      margin: 0;
+    }
+    .h-section { font-size: clamp(48px, 6.7vw, 97px); }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      height: 82px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 30px 0 35px;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav__logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 41px;
+      letter-spacing: -0.06em;
+    }
+    .nav__right { display: flex; align-items: center; gap: 43px; }
+    .nav__links { display: flex; gap: 43px; }
+    .nav__links a {
+      font-size: 14px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      position: relative;
+    }
+    .nav__links a::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px;
+      background: currentColor; transform: scaleX(0); transform-origin: left;
+      transition: transform .3s var(--ease-spring);
+    }
+    .nav__links a:hover::after, .nav__links a:focus-visible::after { transform: scaleX(1); }
+    .nav__ctas { display: flex; gap: 9px; margin-left: -14px; }
+
+    .pill {
+      display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+      height: 45px; padding: 0 25px;
+      border-radius: 999px;
+      font-size: 14px; font-weight: 500;
+      border: 1.5px solid var(--ink);
+      transition: transform .25s var(--ease-spring), opacity .2s;
+    }
+    .pill:hover { transform: translateY(-2px); }
+    .pill:active { transform: translateY(0) scale(.97); }
+    .pill:focus-visible, .platform:focus-visible, .nav__links a:focus-visible, .nav__toggle:focus-visible {
+      outline: 2px solid var(--lime-bright); outline-offset: 3px;
+    }
+    .pill--dark { background: var(--ink); color: var(--cream); }
+    .pill svg { width: 10px; height: 10px; }
+
+    .nav__toggle {
+      display: none;
+      width: 44px; height: 44px; border: 0; background: none; padding: 10px;
+      cursor: pointer; color: var(--ink);
+    }
+    .nav__toggle span { display: block; height: 2px; background: currentColor; margin: 6px 0; transition: transform .3s var(--ease-spring), opacity .2s; }
+    .nav.is-open .nav__toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav.is-open .nav__toggle span:nth-child(2) { opacity: 0; }
+    .nav.is-open .nav__toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 883px;
+      padding: 113px 50px 98px 78px;
+      color: var(--cream);
+      background:
+        radial-gradient(ellipse 55% 60% at 18% 2%, #a3c637 0%, rgba(163,198,55,0) 70%),
+        linear-gradient(118deg, #8fb434 0%, #6f9630 28%, #4e7a30 52%, #3a622f 75%, #2e542d 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 560px;
+      column-gap: 0;
+      align-items: start;
+      overflow: hidden;
+    }
+    .eyebrow {
+      font-size: 16px; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      margin: 0 0 28px;
+    }
+    .hero h1 { font-size: clamp(52px, 7.6vw, 110px); line-height: 0.885; letter-spacing: -0.07em; }
+    .hero h2 {
+      font-family: var(--font-body); font-weight: 600;
+      font-size: clamp(24px, 2.3vw, 33px); letter-spacing: -0.02em;
+      margin: 40px 0 14px;
+    }
+    .hero p { font-size: 18px; line-height: 1.5; margin: 0; max-width: 650px; }
+    .hero__ctas { display: flex; gap: 10px; margin-top: 34px; flex-wrap: wrap; }
+    .hero__ctas .pill { height: 46px; padding: 0 29px; border-color: var(--cream); font-weight: 400; }
+    .pill--cream { background: var(--cream); color: var(--ink); }
+    .pill--ghost { color: var(--cream); }
+
+    .cover {
+      margin-top: 37px;
+      position: relative;
+      transform: rotate(0.8deg);
+      border: 3px solid #cbd6bd;
+      box-shadow: 26px 27px 0 #2c4f28;
+      aspect-ratio: 1;
+      background: #4e7a30;
+    }
+    .cover img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ─── TICKER ──────────────────────────────────────── */
+    .ticker {
+      background: var(--ink); color: var(--cream);
+      height: 72px; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .ticker__track {
+      display: flex; flex-shrink: 0; align-items: center;
+      animation: marquee 38s linear infinite;
+    }
+    .ticker__item {
+      display: flex; align-items: center; flex-shrink: 0;
+      font-family: var(--font-body); font-weight: 700;
+      font-size: 29px; letter-spacing: -0.01em; text-transform: uppercase;
+      white-space: nowrap;
+      padding-left: 11px;
+    }
+    .ticker__item::after {
+      content: ''; width: 15px; height: 15px; border-radius: 50%;
+      background: var(--lime-bright); margin: 0 38px 0 40px;
+    }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* ─── LATEST EPISODES ─────────────────────────────── */
+    .episodes { padding: 83px var(--gutter) 130px 66px; }
+    .episodes__list { display: grid; gap: 44px; margin: 60px -18px 0 -12px; }
+    .episodes__list iframe { display: block; width: 100%; height: 352px; border: 0; border-radius: 12px; }
+
+    /* ─── THE SHOW ────────────────────────────────────── */
+    .show {
+      padding: 140px var(--gutter) 176px;
+      color: var(--cream);
+      background:
+        radial-gradient(ellipse 60% 55% at 50% 22%, #8bb030 0%, rgba(139,176,48,0) 75%),
+        radial-gradient(ellipse 75% 70% at 50% 50%, #739a2f 0%, #5c822f 60%, #4d7431 100%);
+    }
+    .split-head {
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;
+    }
+    .show__intro { font-size: 18px; line-height: 1.5; max-width: 250px; margin: 0 0 4px; }
+    .video {
+      position: relative;
+      margin-top: 72px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      box-shadow: 20px 20px 0 var(--lime);
+      display: grid; place-items: center;
+    }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video__placeholder { color: #fff; font-size: 18px; }
+
+    /* ─── ABOUT ───────────────────────────────────────── */
+    .about {
+      padding: 113px var(--gutter) 135px;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    }
+    .about__copy {
+      border-left: 5px solid var(--lime-bright);
+      padding: 22px 0 26px 54px;
+      margin-left: -3px;
+    }
+    .about__lead { font-size: clamp(22px, 2.15vw, 31px); line-height: 1.25; letter-spacing: -0.015em; margin: 0 0 30px; max-width: 520px; }
+    .about__copy p:not(.about__lead) { font-size: 17px; line-height: 1.47; margin: 0 0 24px; max-width: 450px; }
+    .about__copy p:last-child { margin-bottom: 0; }
+
+    /* ─── LISTEN ──────────────────────────────────────── */
+    .listen { background: var(--ink); color: var(--cream); padding: 170px var(--gutter) 160px; }
+    .listen__intro { font-size: 17px; line-height: 1.47; max-width: 400px; margin: 0 0 2px; }
+    .listen__body {
+      margin-top: 92px;
+      display: grid; grid-template-columns: 1fr 510px; align-items: center;
+      padding-left: 73px; padding-right: 73px;
+    }
+    .platforms { display: grid; gap: 80px; }
+    .platform {
+      height: 101px; border-radius: 999px;
+      background: var(--lime); color: var(--ink);
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      font-family: var(--font-body); font-weight: 600;
+      font-size: 45px; letter-spacing: -0.035em;
+      transition: transform .3s var(--ease-spring), background-color .2s;
+    }
+    .platform:hover { transform: translateY(-4px); background: var(--lime-bright); }
+    .platform:active { transform: scale(.98); }
+    .platform svg { width: 62px; height: 62px; flex-shrink: 0; }
+
+    /* Phone mockup */
+    .phone {
+      width: 503px; max-width: 100%;
+      aspect-ratio: 503 / 1004;
+      border-radius: 64px;
+      padding: 14px;
+      background: linear-gradient(145deg, #4a554c, #2b322d 40%, #1d221f);
+      box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), inset 0 0 0 2px #59645b;
+      position: relative;
+    }
+    .phone__inner {
+      height: 100%; border-radius: 52px; background: #050605; padding: 22px;
+    }
+    .phone__screen {
+      position: relative; height: 100%; border-radius: 34px; background: #607f2f;
+      display: flex; align-items: center; justify-content: center; padding: 0 18px;
+    }
+    .phone__notch {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 240px; height: 34px; background: #050605; border-radius: 0 0 18px 18px;
+    }
+    .phone__notch::before { content: ''; position: absolute; top: 12px; left: 95px; width: 52px; height: 3px; border-radius: 3px; background: #2a2f2b; }
+    .phone__notch::after { content: ''; position: absolute; top: 10px; left: 170px; width: 8px; height: 8px; border-radius: 50%; background: #2a2f2b; }
+    .phone__card {
+      width: 100%; background: #1f2a12; border-radius: 8px; padding: 22px 22px 24px;
+      font-family: var(--font-body);
+    }
+    .phone__card img { border-radius: 6px; width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .phone__title { font-weight: 700; font-size: 30px; line-height: 1.25; letter-spacing: -0.01em; margin: 22px 0 6px; }
+    .phone__by { font-size: 24px; color: #b9bfb2; margin: 0 0 22px; }
+    .phone__brand { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 20px; }
+    .phone__brand svg { width: 28px; height: 28px; }
+
+    /* ─── HOST ────────────────────────────────────────── */
+    .host {
+      position: relative; overflow: hidden;
+      color: var(--cream);
+      min-height: 775px;
+      background:
+        radial-gradient(ellipse 50% 70% at 92% 45%, #8fb932 0%, rgba(143,185,50,0) 80%),
+        linear-gradient(100deg, #4a6f35 0%, #4d7335 35%, #5e872f 60%, #7aa333 100%);
+      padding: 135px var(--gutter) 90px 115px;
+    }
+    .host__text { position: relative; z-index: 1; max-width: 660px; }
+    .host__sub { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.22; letter-spacing: -0.015em; margin: 32px 0 34px; max-width: 660px; }
+    .host__text p:not(.host__sub) { font-size: 20px; line-height: 1.24; margin: 0 0 25px; max-width: 575px; }
+    .host__photo {
+      position: absolute; right: 25px; bottom: 0;
+      width: 760px; height: 760px; object-fit: cover; object-position: top;
+    }
+
+    /* ─── TABLET ──────────────────────────────────────── */
+    @media (max-width: 1180px) {
+      .nav__right { gap: 28px; }
+      .nav__links { gap: 26px; }
+      .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 42%); }
+      .listen__body { grid-template-columns: 1fr 1fr; padding: 0; gap: 40px; }
+      .platform { font-size: 34px; height: 84px; }
+      .platform svg { width: 48px; height: 48px; }
+      .platforms { gap: 40px; }
+      .phone { justify-self: center; }
+      .host__photo { width: 560px; height: 560px; }
+    }
+
+    /* ─── MOBILE ──────────────────────────────────────── */
+    @media (max-width: 860px) {
+      html { scroll-padding-top: 64px; }
+      .nav { height: 64px; padding: 0 12px 0 20px; }
+      .nav__logo { font-size: 30px; }
+      .nav__toggle { display: block; }
+      .br-lg { display: none; }
+      .h-section { font-size: clamp(36px, 11.6vw, 64px); }
+      .nav__right {
+        position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 28px;
+        padding: 28px 20px 32px;
+        background: var(--cream); border-bottom: 1px solid var(--rule);
+        opacity: 0; transform: translateY(-8px); pointer-events: none; visibility: hidden;
+        transition: opacity .2s, transform .3s var(--ease-spring), visibility 0s .3s;
+      }
+      .nav.is-open .nav__right { opacity: 1; transform: none; pointer-events: auto; visibility: visible; transition: opacity .2s, transform .3s var(--ease-spring); }
+      .nav__links { flex-direction: column; gap: 22px; }
+      .nav__links a { font-size: 15px; }
+      .nav__ctas { margin: 0; }
+      .nav__ctas .pill { flex: 1; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        padding: 56px 20px 64px;
+      }
+      .eyebrow { font-size: 12px; margin-bottom: 18px; }
+      .hero h1 { font-size: clamp(44px, 13.4vw, 80px); }
+      .hero h2 { margin-top: 28px; }
+      .hero p { font-size: 16px; }
+      .hero__ctas { margin-top: 26px; }
+      .hero__ctas .pill { flex: 1 1 150px; padding: 0 16px; }
+      .cover { margin: 48px 12px 14px 0; box-shadow: 14px 14px 0 #2c4f28; }
+
+      .ticker { height: 52px; }
+      .ticker__item { font-size: 20px; }
+      .ticker__item::after { width: 10px; height: 10px; margin: 0 24px; }
+
+      .episodes { padding: 64px 20px 80px; }
+      .episodes__list { margin: 36px 0 0; gap: 20px; }
+
+      .show { padding: 72px 20px 88px; }
+      .split-head { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .show__intro, .listen__intro { max-width: 420px; font-size: 16px; }
+      .video { margin-top: 36px; box-shadow: 10px 10px 0 var(--lime); }
+
+      .about { grid-template-columns: 1fr; padding: 72px 20px 80px; gap: 36px; }
+      .about__copy { padding: 6px 0 6px 24px; margin: 0; border-left-width: 4px; }
+      .about__copy p:not(.about__lead) { font-size: 16px; }
+
+      .listen { padding: 72px 20px 88px; }
+      .listen__body { grid-template-columns: 1fr; margin-top: 44px; gap: 48px; }
+      .phone { width: min(260px, 72vw); border-radius: 40px; padding: 8px; }
+      .phone__inner { border-radius: 33px; padding: 12px; }
+      .phone__screen { border-radius: 22px; padding: 0 10px; }
+      .phone__notch { width: 120px; height: 20px; border-radius: 0 0 12px 12px; }
+      .phone__notch::before { top: 7px; left: 44px; width: 26px; height: 2px; }
+      .phone__notch::after { top: 6px; left: 84px; width: 5px; height: 5px; }
+      .phone__card { padding: 12px 12px 14px; }
+      .phone__title { font-size: 16px; margin: 12px 0 4px; }
+      .phone__by { font-size: 13px; margin-bottom: 12px; }
+      .phone__brand { font-size: 12px; }
+      .phone__brand svg { width: 17px; height: 17px; }
+      .platforms { gap: 14px; }
+      .platform { height: 64px; font-size: 26px; gap: 10px; }
+      .platform svg { width: 34px; height: 34px; }
+
+      .host { padding: 72px 20px 0; min-height: 0; display: flex; flex-direction: column; }
+      .host__sub { margin: 22px 0 24px; }
+      .host__text p:not(.host__sub) { font-size: 17px; line-height: 1.4; }
+      .host__photo { position: relative; right: auto; width: 100%; height: auto; aspect-ratio: 1; margin-top: 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticker__track { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <header class="nav" id="nav">
+    <a href="/podcast" class="nav__logo" aria-label="Better Future — podcast home">Better Future</a>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__right" id="nav-menu">
+      <nav class="nav__links" aria-label="Page sections">
+        <a href="#the-show">The Show</a>
+        <a href="#episodes">Episodes</a>
+        <a href="#about">About</a>
+        <a href="#host">Meet the Host</a>
+      </nav>
+      <div class="nav__ctas">
+        <a class="pill" href="https://www.youtube.com/playlist?list=PLqoX_ncE2lEJvELD5N-xnQV56T96QDWNM" target="_blank" rel="noopener">Watch <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 8 8 2M3.5 2H8v4.5"/></svg></a>
+        <a class="pill pill--dark" href="https://open.spotify.com/show/16K0dkbk35q0mTslKJJ7z0" target="_blank" rel="noopener">Listen <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 8 8 2M3.5 2H8v4.5"/></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+      <div class="hero__text">
+        <p class="eyebrow">The podcast for what comes next</p>
+        <h1 class="display">The economy <br class="br-lg">we have isn’t <br class="br-lg">the only one <br class="br-lg">possible.</h1>
+        <h2>So what do we build instead?</h2>
+        <p>Meaningful, future-driven conversations hosted by economist-turned-creator Michael Mezz — carried far beyond each episode through Better Future Media’s cross-platform reach.</p>
+        <div class="hero__ctas">
+          <a class="pill pill--cream" href="https://open.spotify.com/show/16K0dkbk35q0mTslKJJ7z0" target="_blank" rel="noopener">Listen on Spotify</a>
+          <a class="pill pill--ghost" href="https://www.youtube.com/playlist?list=PLqoX_ncE2lEJvELD5N-xnQV56T96QDWNM" target="_blank" rel="noopener">Watch on YouTube</a>
+        </div>
+      </div>
+      <div class="cover">
+        <img src="/images/podcast/cover.jpg" alt="Better Future with Michael Mezz podcast cover art" width="560" height="560">
+      </div>
+    </section>
+
+    <!-- ═══ TICKER ═══ -->
+    <div class="ticker" aria-label="Topics: New Economic Systems, Power & Movements, Planetary Wellbeing">
+      <div class="ticker__track" aria-hidden="true">
+        <span class="ticker__item">New Economic Systems</span><span class="ticker__item">Power &amp; Movements</span><span class="ticker__item">Planetary Wellbeing</span>
+        <span class="ticker__item">New Economic Systems</span><span class="ticker__item">Power &amp; Movements</span><span class="ticker__item">Planetary Wellbeing</span>
+        <span class="ticker__item">New Economic Systems</span><span class="ticker__item">Power &amp; Movements</span><span class="ticker__item">Planetary Wellbeing</span>
+        <span class="ticker__item">New Economic Systems</span><span class="ticker__item">Power &amp; Movements</span><span class="ticker__item">Planetary Wellbeing</span>
+      </div>
+    </div>
+
+    <!-- ═══ LATEST EPISODES ═══ -->
+    <section class="episodes" id="episodes">
+      <h2 class="display h-section">Latest<br>Episodes</h2>
+      <!-- To update: copy each episode ID from its open.spotify.com/episode/<ID> link -->
+      <div class="episodes__list">
+        <iframe title="Spotify: The Age of Abandonment, and How to Escape It — Anand Giridharadas" src="https://open.spotify.com/embed/episode/0Eu2Ta6TT87rWiALWSKK0H?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe title="Spotify: How to Build an Anti-Fascist Economy — Isabella Weber" src="https://open.spotify.com/embed/episode/5SzScBScVXI28pevlMNLqu?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe title="Spotify: We Already Have the Climate Solutions We Need — Ayana Elizabeth Johnson" src="https://open.spotify.com/embed/episode/4K1llURwTF7H7V1ZqBntOC?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <!-- ═══ THE SHOW ═══ -->
+    <section class="show" id="the-show">
+      <div class="split-head">
+        <h2 class="display h-section">Conversations<br>designed to shift<br>the narrative.</h2>
+        <p class="show__intro">Long-form thinking that becomes cross-platform attention — extending each guest’s ideas well beyond the episode itself.</p>
+      </div>
+      <div class="video">
+        <!-- TODO: replace the placeholder with the Jason Hickel video embed, e.g.
+             <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Jason Hickel on Better Future" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe> -->
+        <span class="video__placeholder">Jason Hickel video embed</span>
+      </div>
+    </section>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section class="about" id="about">
+      <h2 class="display h-section">Future-<br>driven, not<br>doom-driven.</h2>
+      <div class="about__copy">
+        <p class="about__lead">Better Future with Michael Mezz starts from a simple premise: the systems shaping our lives were built — which means they can be rebuilt.</p>
+        <p>The show explores climate and sustainability, economics, culture, systems change, activism and ethics, finance, and social wellbeing.</p>
+        <p>Every conversation is oriented toward what comes next. That is what resonates with an audience of socially conscious, values-driven, curious and long-form-oriented professionals, activists and cultural leaders engaged with long-term social movements.</p>
+      </div>
+    </section>
+
+    <!-- ═══ LISTEN ═══ -->
+    <section class="listen" id="listen">
+      <div class="split-head">
+        <h2 class="display h-section">Never miss<br>an episode</h2>
+        <p class="listen__intro">Always catch the latest economists, scientists, organizers and thinkers with serious answers to the question: what comes next?</p>
+      </div>
+      <div class="listen__body">
+        <div class="phone" aria-hidden="true">
+          <div class="phone__inner">
+            <div class="phone__screen">
+              <div class="phone__notch"></div>
+              <div class="phone__card">
+                <img src="/images/podcast/cover.jpg" alt="">
+                <p class="phone__title">Better Future with Michael Mezz</p>
+                <p class="phone__by">By Michael Mezzatesta</p>
+                <div class="phone__brand"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#f4f0e7"/><path d="M6.2 9.3c3.8-1.1 8.2-.8 11.6 1.1M6.8 12.4c3.1-.9 6.8-.6 9.6 1M7.4 15.3c2.5-.7 5.3-.5 7.6.8" fill="none" stroke="#1f2a12" stroke-width="1.7" stroke-linecap="round"/></svg>Spotify</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="platforms">
+          <a class="platform" href="https://open.spotify.com/show/16K0dkbk35q0mTslKJJ7z0" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#171a16"/><path d="M6.2 9.3c3.8-1.1 8.2-.8 11.6 1.1M6.8 12.4c3.1-.9 6.8-.6 9.6 1M7.4 15.3c2.5-.7 5.3-.5 7.6.8" fill="none" stroke="#a7c636" stroke-width="1.7" stroke-linecap="round"/></svg>
+            Spotify
+          </a>
+          <a class="platform" href="https://podcasts.apple.com/tt/podcast/better-future-with-michael-mezz/id1823942833" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#171a16" stroke-width="2" stroke-linecap="round"><path d="M7.2 17.6A8.5 8.5 0 1 1 16.8 17.6"/><path d="M8.6 14.6a4.6 4.6 0 1 1 6.8 0"/><circle cx="12" cy="10.6" r="1.9" fill="#171a16" stroke="none"/><path d="M12 14.2v7.2" stroke-width="3.2"/></svg>
+            Apple Podcasts
+          </a>
+          <a class="platform" href="https://www.youtube.com/playlist?list=PLqoX_ncE2lEJvELD5N-xnQV56T96QDWNM" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4.5" width="22" height="15" rx="3.5" fill="#171a16"/><path d="M10 8.8v6.4l5.4-3.2z" fill="#a7c636"/></svg>
+            YouTube
+          </a>
+          <a class="platform" href="https://www.instagram.com/betterfuture.media/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#171a16" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.1" fill="#171a16" stroke="none"/></svg>
+            Instagram
+          </a>
+          <a class="platform" href="https://betterfuturemedia.substack.com/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="#171a16"><rect x="4" y="2.5" width="16" height="2.2"/><rect x="4" y="6.3" width="16" height="2.2"/><path d="M4 10.1h16V21.5l-8-4.4-8 4.4z"/></svg>
+            Substack
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ HOST ═══ -->
+    <section class="host" id="host">
+      <div class="host__text">
+        <h2 class="display h-section">Michael<br>Mezzatesta</h2>
+        <p class="host__sub">A communicator working at the intersection of economics, climate and culture.</p>
+        <p>Michael is a communicator working at the intersection of economics, climate, and culture. His work reaches tens of millions of viewers each month and is known for translating complex economic and sustainability ideas into clear, compelling stories for a new generation.</p>
+        <p>He leads Better Future Media, a media company that uses storytelling to shift culture away from extractive systems and toward a more regenerative future.</p>
+      </div>
+      <!-- TODO: replace with the cut-out portrait of Michael (transparent PNG) -->
+      <img class="host__photo" src="https://placehold.co/760x760/6f9a31/f4f0e7?text=Michael+portrait+(cut-out+PNG)" alt="Michael Mezzatesta" width="760" height="760">
+    </section>
+  </main>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const toggle = nav.querySelector('.nav__toggle');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    nav.querySelectorAll('.nav__right a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
+  <script type="module">
+    import { inject } from '/analytics.mjs';
+    inject();
+  </script>
+</body>
+</html>

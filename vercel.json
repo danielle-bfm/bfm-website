@@ -1,6 +1,18 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/index", "destination": "/", "permanent": true }
+    { "source": "/index", "destination": "/", "permanent": true },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "betterfuturepod.com" }],
+      "destination": "https://betterfuture.media/podcast",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.betterfuturepod.com" }],
+      "destination": "https://betterfuture.media/podcast",
+      "permanent": true
+    }
   ]
 }
