@@ -205,7 +205,6 @@
       display: grid; place-items: center;
     }
     .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .video__placeholder { color: #fff; font-size: 18px; }
 
     /* ─── ABOUT ───────────────────────────────────────── */
     .about {
@@ -410,7 +409,7 @@
 
   <main>
     <!-- ═══ HERO ═══ -->
-    <section class="hero">
+    <section class="hero" id="the-show">
       <div class="hero__text">
         <p class="eyebrow">The podcast for what comes next</p>
         <h1 class="display">The economy <br class="br-lg">we have isn’t <br class="br-lg">the only one <br class="br-lg">possible.</h1>
@@ -448,15 +447,13 @@
     </section>
 
     <!-- ═══ THE SHOW ═══ -->
-    <section class="show" id="the-show">
+    <section class="show" id="conversations">
       <div class="split-head">
         <h2 class="display h-section">Conversations<br>designed to shift<br>the narrative.</h2>
         <p class="show__intro">Long-form thinking that becomes cross-platform attention — extending each guest’s ideas well beyond the episode itself.</p>
       </div>
       <div class="video">
-        <!-- TODO: replace the placeholder with the Jason Hickel video embed, e.g.
-             <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Jason Hickel on Better Future" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe> -->
-        <span class="video__placeholder">Jason Hickel video embed</span>
+        <iframe src="https://www.youtube-nocookie.com/embed/X5WU51sVn3Y" title="Jason Hickel on Better Future with Michael Mezz" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
 
@@ -504,7 +501,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4.5" width="22" height="15" rx="3.5" fill="#171a16"/><path d="M10 8.8v6.4l5.4-3.2z" fill="#a7c636"/></svg>
             YouTube
           </a>
-          <a class="platform" href="https://www.instagram.com/betterfuture.media/" target="_blank" rel="noopener">
+          <a class="platform" href="https://www.instagram.com/betterfuturepod" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#171a16" stroke-width="2.2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.1" fill="#171a16" stroke="none"/></svg>
             Instagram
           </a>
