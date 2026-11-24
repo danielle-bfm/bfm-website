@@ -289,15 +289,15 @@
     .host__sub { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.22; letter-spacing: -0.015em; margin: 32px 0 34px; }
     .host__text p:not(.host__sub) { font-size: 20px; line-height: 1.24; margin: 0 0 25px; max-width: 575px; }
     /* Portrait + its light glow travel together, so the glow always sits behind his head */
-    /* Zoomed in like the mockup: pinned to the top-right, bottom (and the cut shoulder) clipped by the section */
+    /* Full edited cut-out (shoulders finish inside the frame), sitting on the section's bottom edge */
     .host__portrait {
-      position: absolute; top: -14px; right: min(0px, calc(54vw - 780px));
-      width: 780px;
-      aspect-ratio: 986 / 1234;
+      position: absolute; bottom: 0; right: 40px;
+      width: clamp(520px, 48vw, 700px);
+      aspect-ratio: 986 / 869;
     }
     .host__portrait::before {
       content: ''; position: absolute;
-      left: 50%; top: 26%;
+      left: 50%; top: 38%;
       width: 150%; aspect-ratio: 1;
       transform: translate(-50%, -50%);
       background: radial-gradient(circle closest-side,
@@ -307,7 +307,7 @@
         rgba(143, 185, 50, 0) 100%);
       pointer-events: none;
     }
-    .host__photo { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .host__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
     /* ─── TABLET ──────────────────────────────────────── */
     @media (max-width: 1180px) {
@@ -324,6 +324,7 @@
       .platform svg { width: 40px; height: 40px; }
       .host { padding-left: var(--gutter); }
       .host__text { max-width: calc(54vw - var(--gutter)); }
+      .host__portrait { width: 48vw; right: 16px; }
     }
 
     /* ─── MOBILE ──────────────────────────────────────── */
@@ -398,10 +399,8 @@
       .host__sub { margin: 22px 0 24px; }
       .host__text p:not(.host__sub) { font-size: 17px; line-height: 1.4; }
       .host__text { max-width: none; }
-      .host__portrait { position: relative; top: auto; right: auto; width: calc(100% + 40px); aspect-ratio: 986 / 760; margin: 28px -20px 0; }
-      .host__portrait::before { top: 42%; width: 120%; }
-      /* Slight overscale so the shoulder's straight cut edge sits past the screen's right edge */
-      .host__photo { width: 106%; max-width: none; height: auto; }
+      .host__portrait { position: relative; bottom: auto; right: auto; width: calc(100% + 40px); aspect-ratio: 986 / 869; margin: 28px -20px 0; }
+      .host__portrait::before { top: 38%; width: 120%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -547,7 +546,7 @@
         <p>He leads Better Future Media, a media company that uses storytelling to shift culture away from extractive systems and toward a more regenerative future.</p>
       </div>
       <div class="host__portrait">
-        <img class="host__photo" src="/images/podcast/michael.webp" alt="Michael Mezzatesta" width="986" height="1234" decoding="async">
+        <img class="host__photo" src="/images/podcast/michael.webp" alt="Michael Mezzatesta" width="986" height="869" decoding="async">
       </div>
     </section>
   </main>
