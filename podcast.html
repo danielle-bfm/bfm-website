@@ -14,10 +14,12 @@
   <meta property="og:image" content="https://betterfuture.media/images/podcast/cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Placeholder fonts until the final font files arrive: swap --font-display / --font-body below. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Open Sauce Sans (OFL) via Fontsource -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans@5.2.5/latin-400.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans@5.2.5/latin-500.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans@5.2.5/latin-600.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/open-sauce-sans@5.2.5/latin-700.css">
 
   <style>
     :root {
@@ -28,8 +30,9 @@
       --green-dark: #2e542d;
       --rule: #ccc9c1;
 
-      --font-display: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
-      --font-body: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
+      --font-display: 'Open Sauce Sans', 'Helvetica Neue', Arial, sans-serif;
+      --font-body: 'Open Sauce Sans', 'Helvetica Neue', Arial, sans-serif;
+      --track-display: -0.045em;
 
       --gutter: clamp(20px, 5vw, 72px);
       --ease-spring: cubic-bezier(.34, 1.4, .64, 1);
@@ -51,7 +54,7 @@
       font-family: var(--font-display);
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: -0.07em;
+      letter-spacing: var(--track-display);
       line-height: 0.9;
       margin: 0;
     }
@@ -70,7 +73,7 @@
       font-family: var(--font-display);
       font-weight: 700;
       font-size: 41px;
-      letter-spacing: -0.06em;
+      letter-spacing: -0.04em;
     }
     .nav__right { display: flex; align-items: center; gap: 43px; }
     .nav__links { display: flex; gap: 43px; }
@@ -133,7 +136,7 @@
       letter-spacing: 0.14em; text-transform: uppercase;
       margin: 0 0 28px;
     }
-    .hero h1 { font-size: clamp(52px, 7.6vw, 110px); line-height: 0.885; letter-spacing: -0.07em; }
+    .hero h1 { font-size: clamp(48px, calc((100vw - 688px) / 7.4), 100px); line-height: 0.9; letter-spacing: var(--track-display); }
     .hero h2 {
       font-family: var(--font-body); font-weight: 600;
       font-size: clamp(24px, 2.3vw, 33px); letter-spacing: -0.02em;
@@ -221,88 +224,105 @@
     .about__copy p:last-child { margin-bottom: 0; }
 
     /* ─── LISTEN ──────────────────────────────────────── */
-    .listen { background: var(--ink); color: var(--cream); padding: 170px var(--gutter) 160px; }
+    .listen { background: var(--ink); color: var(--cream); padding: 130px var(--gutter) 112px; }
     .listen__intro { font-size: 17px; line-height: 1.47; max-width: 400px; margin: 0 0 2px; }
     .listen__body {
-      margin-top: 92px;
-      display: grid; grid-template-columns: 1fr 510px; align-items: center;
-      padding-left: 73px; padding-right: 73px;
+      margin-top: 70px;
+      display: flex; justify-content: center; align-items: center;
+      gap: 60px;
     }
-    .platforms { display: grid; gap: 80px; }
+    .platforms { display: grid; gap: 60px; width: 380px; flex-shrink: 0; }
     .platform {
-      height: 101px; border-radius: 999px;
+      height: 75px; border-radius: 999px;
       background: var(--lime); color: var(--ink);
-      display: flex; align-items: center; justify-content: center; gap: 12px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
       font-family: var(--font-body); font-weight: 600;
-      font-size: 45px; letter-spacing: -0.035em;
+      font-size: 33px; letter-spacing: -0.02em;
       transition: transform .3s var(--ease-spring), background-color .2s;
     }
     .platform:hover { transform: translateY(-4px); background: var(--lime-bright); }
     .platform:active { transform: scale(.98); }
-    .platform svg { width: 62px; height: 62px; flex-shrink: 0; }
+    .platform svg { width: 46px; height: 46px; flex-shrink: 0; }
 
     /* Phone mockup */
     .phone {
-      width: 503px; max-width: 100%;
-      aspect-ratio: 503 / 1004;
-      border-radius: 64px;
-      padding: 14px;
+      width: 375px; max-width: 100%; flex-shrink: 0;
+      aspect-ratio: 375 / 750;
+      border-radius: 54px;
+      padding: 7px;
       background: linear-gradient(145deg, #4a554c, #2b322d 40%, #1d221f);
-      box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), inset 0 0 0 2px #59645b;
+      box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), 0 0 120px -20px rgba(167,198,54,.08), inset 0 0 0 2px #59645b;
       position: relative;
     }
     .phone__inner {
-      height: 100%; border-radius: 52px; background: #050605; padding: 22px;
+      height: 100%; border-radius: 47px; background: #050605; padding: 19px;
     }
     .phone__screen {
-      position: relative; height: 100%; border-radius: 34px; background: #607f2f;
-      display: flex; align-items: center; justify-content: center; padding: 0 18px;
+      position: relative; height: 100%; border-radius: 30px; background: #607f2f;
+      display: flex; align-items: center; justify-content: center; padding: 0 14px;
     }
     .phone__notch {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 240px; height: 34px; background: #050605; border-radius: 0 0 18px 18px;
+      width: 178px; height: 26px; background: #050605; border-radius: 0 0 14px 14px;
     }
-    .phone__notch::before { content: ''; position: absolute; top: 12px; left: 95px; width: 52px; height: 3px; border-radius: 3px; background: #2a2f2b; }
-    .phone__notch::after { content: ''; position: absolute; top: 10px; left: 170px; width: 8px; height: 8px; border-radius: 50%; background: #2a2f2b; }
+    .phone__notch::before { content: ''; position: absolute; top: 9px; left: 70px; width: 38px; height: 2px; border-radius: 2px; background: #2a2f2b; }
+    .phone__notch::after { content: ''; position: absolute; top: 7px; left: 125px; width: 6px; height: 6px; border-radius: 50%; background: #2a2f2b; }
     .phone__card {
-      width: 100%; background: #1f2a12; border-radius: 8px; padding: 22px 22px 24px;
+      width: 100%; background: #1f2a12; border-radius: 6px; padding: 17px 17px 18px;
       font-family: var(--font-body);
     }
-    .phone__card img { border-radius: 6px; width: 100%; aspect-ratio: 1; object-fit: cover; }
-    .phone__title { font-weight: 700; font-size: 30px; line-height: 1.25; letter-spacing: -0.01em; margin: 22px 0 6px; }
-    .phone__by { font-size: 24px; color: #b9bfb2; margin: 0 0 22px; }
-    .phone__brand { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 20px; }
-    .phone__brand svg { width: 28px; height: 28px; }
+    .phone__card img { border-radius: 4px; width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .phone__title { font-weight: 700; font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; margin: 16px 0 6px; }
+    .phone__by { font-size: 17px; color: #b9bfb2; margin: 0 0 18px; }
+    .phone__brand { display: flex; align-items: center; gap: 5px; font-weight: 700; font-size: 15px; }
+    .phone__brand svg { width: 21px; height: 21px; }
 
     /* ─── HOST ────────────────────────────────────────── */
     .host {
       position: relative; overflow: hidden;
       color: var(--cream);
       min-height: 775px;
-      background:
-        radial-gradient(ellipse 50% 70% at 92% 45%, #8fb932 0%, rgba(143,185,50,0) 80%),
-        linear-gradient(100deg, #4a6f35 0%, #4d7335 35%, #5e872f 60%, #7aa333 100%);
+      background: linear-gradient(100deg, #4a6f35 0%, #4d7335 35%, #5e872f 62%, #6f9831 100%);
       padding: 135px var(--gutter) 90px 115px;
     }
-    .host__text { position: relative; z-index: 1; max-width: 660px; }
-    .host__sub { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.22; letter-spacing: -0.015em; margin: 32px 0 34px; max-width: 660px; }
+    .host__text { position: relative; z-index: 1; max-width: min(660px, calc(54vw - 115px)); }
+    .host__sub { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.22; letter-spacing: -0.015em; margin: 32px 0 34px; }
     .host__text p:not(.host__sub) { font-size: 20px; line-height: 1.24; margin: 0 0 25px; max-width: 575px; }
-    .host__photo {
-      position: absolute; right: 25px; bottom: 0;
-      width: 760px; height: 760px; object-fit: cover; object-position: top;
+    /* Portrait + its light glow travel together, so the glow always sits behind his head */
+    .host__portrait {
+      position: absolute; right: 40px; bottom: 0;
+      width: clamp(420px, 43vw, 620px);
+      aspect-ratio: 986 / 1234;
     }
+    .host__portrait::before {
+      content: ''; position: absolute;
+      left: 50%; top: 26%;
+      width: 150%; aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle closest-side,
+        rgba(196, 226, 74, .95) 0%,
+        rgba(170, 206, 60, .7) 35%,
+        rgba(143, 185, 50, .3) 65%,
+        rgba(143, 185, 50, 0) 100%);
+      pointer-events: none;
+    }
+    .host__photo { position: relative; width: 100%; height: 100%; object-fit: contain; object-position: bottom; }
 
     /* ─── TABLET ──────────────────────────────────────── */
     @media (max-width: 1180px) {
       .nav__right { gap: 28px; }
       .nav__links { gap: 26px; }
       .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 42%); }
-      .listen__body { grid-template-columns: 1fr 1fr; padding: 0; gap: 40px; }
-      .platform { font-size: 34px; height: 84px; }
-      .platform svg { width: 48px; height: 48px; }
-      .platforms { gap: 40px; }
-      .phone { justify-self: center; }
-      .host__photo { width: 560px; height: 560px; }
+      .hero h1 { font-size: calc((100vw - 128px) * 0.075); }
+      .listen__body { gap: 40px; }
+      .phone { width: 320px; }
+      .phone__title { font-size: 19px; }
+      .phone__by { font-size: 15px; }
+      .platforms { width: 320px; gap: 44px; }
+      .platform { font-size: 28px; height: 66px; }
+      .platform svg { width: 40px; height: 40px; }
+      .host { padding-left: var(--gutter); }
+      .host__text { max-width: calc(54vw - var(--gutter)); }
     }
 
     /* ─── MOBILE ──────────────────────────────────────── */
@@ -312,7 +332,7 @@
       .nav__logo { font-size: 30px; }
       .nav__toggle { display: block; }
       .br-lg { display: none; }
-      .h-section { font-size: clamp(36px, 11.6vw, 64px); }
+      .h-section { font-size: clamp(34px, 10.8vw, 64px); }
       .nav__right {
         position: absolute; top: 64px; left: 0; right: 0;
         flex-direction: column; align-items: stretch; gap: 28px;
@@ -333,7 +353,7 @@
         padding: 56px 20px 64px;
       }
       .eyebrow { font-size: 12px; margin-bottom: 18px; }
-      .hero h1 { font-size: clamp(44px, 13.4vw, 80px); }
+      .hero h1 { font-size: clamp(40px, 12.4vw, 80px); }
       .hero h2 { margin-top: 28px; }
       .hero p { font-size: 16px; }
       .hero__ctas { margin-top: 26px; }
@@ -357,7 +377,7 @@
       .about__copy p:not(.about__lead) { font-size: 16px; }
 
       .listen { padding: 72px 20px 88px; }
-      .listen__body { grid-template-columns: 1fr; margin-top: 44px; gap: 48px; }
+      .listen__body { flex-direction: column; margin-top: 44px; gap: 56px; }
       .phone { width: min(260px, 72vw); border-radius: 40px; padding: 8px; }
       .phone__inner { border-radius: 33px; padding: 12px; }
       .phone__screen { border-radius: 22px; padding: 0 10px; }
@@ -369,14 +389,15 @@
       .phone__by { font-size: 13px; margin-bottom: 12px; }
       .phone__brand { font-size: 12px; }
       .phone__brand svg { width: 17px; height: 17px; }
-      .platforms { gap: 14px; }
+      .platforms { width: 100%; gap: 18px; }
       .platform { height: 64px; font-size: 26px; gap: 10px; }
       .platform svg { width: 34px; height: 34px; }
 
       .host { padding: 72px 20px 0; min-height: 0; display: flex; flex-direction: column; }
       .host__sub { margin: 22px 0 24px; }
       .host__text p:not(.host__sub) { font-size: 17px; line-height: 1.4; }
-      .host__photo { position: relative; right: auto; width: 100%; height: auto; aspect-ratio: 1; margin-top: 24px; }
+      .host__text { max-width: none; }
+      .host__portrait { position: relative; right: auto; width: min(400px, 92%); margin: 32px auto 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -521,8 +542,9 @@
         <p>Michael is a communicator working at the intersection of economics, climate, and culture. His work reaches tens of millions of viewers each month and is known for translating complex economic and sustainability ideas into clear, compelling stories for a new generation.</p>
         <p>He leads Better Future Media, a media company that uses storytelling to shift culture away from extractive systems and toward a more regenerative future.</p>
       </div>
-      <!-- TODO: replace with the cut-out portrait of Michael (transparent PNG) -->
-      <img class="host__photo" src="https://placehold.co/760x760/6f9a31/f4f0e7?text=Michael+portrait+(cut-out+PNG)" alt="Michael Mezzatesta" width="760" height="760">
+      <div class="host__portrait">
+        <img class="host__photo" src="/images/podcast/michael.webp" alt="Michael Mezzatesta" width="986" height="1234" decoding="async">
+      </div>
     </section>
   </main>
 
