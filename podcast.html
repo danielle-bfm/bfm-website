@@ -288,8 +288,8 @@
       display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 40px;
     }
     .host__text { position: relative; z-index: 1; max-width: min(660px, calc(54vw - 115px)); }
-    .host__sub { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.22; letter-spacing: -0.015em; margin: 32px 0 34px; }
-    .host__text p:not(.host__sub) { font-size: 20px; line-height: 1.24; margin: 0 0 25px; max-width: 575px; }
+    .host__text h2 + p { margin-top: 36px; }
+    .host__text p { font-size: 20px; line-height: 1.24; margin: 0 0 25px; max-width: 575px; }
     /* Portrait + its light glow travel together, so the glow always sits behind his head */
     /* Full edited cut-out (shoulders finish inside the frame), sitting on the section's bottom edge */
     .host__portrait {
@@ -400,8 +400,8 @@
       .platform svg { width: 34px; height: 34px; }
 
       .host { padding: 72px 20px 0; min-height: 0; display: flex; flex-direction: column; }
-      .host__sub { margin: 22px 0 24px; }
-      .host__text p:not(.host__sub) { font-size: 17px; line-height: 1.4; }
+      .host__text h2 + p { margin-top: 24px; }
+      .host__text p { font-size: 17px; line-height: 1.4; }
       .host__text { max-width: none; }
       .host__portrait { position: relative; bottom: auto; right: auto; width: calc(100% + 40px); aspect-ratio: 986 / 869; margin: 28px -20px 0; }
       .host__portrait::before { top: 38%; width: 120%; }
@@ -545,7 +545,6 @@
     <section class="host" id="host">
       <div class="host__text">
         <h2 class="display h-section">Michael<br>Mezzatesta</h2>
-        <p class="host__sub">A communicator working at the intersection of economics, climate and culture.</p>
         <p>Michael is a communicator working at the intersection of economics, climate, and culture. His work reaches tens of millions of viewers each month and is known for translating complex economic and sustainability ideas into clear, compelling stories for a new generation.</p>
         <p>He leads Better Future Media, a media company that uses storytelling to shift culture away from extractive systems and toward a more regenerative future.</p>
       </div>
